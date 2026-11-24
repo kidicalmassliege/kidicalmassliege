@@ -197,7 +197,91 @@
       margin-bottom: 0;
     }
 
-    /* --- 3. LISTE DES DATES & ICAL --- */
+    /* --- 3. CARROUSEL PHOTOS AUTOMATIQUE --- */
+    .carrousel-conteneur {
+      position: relative;
+      max-width: 700px;
+      margin: 18px auto 0 auto;
+      overflow: hidden;
+      border: 3px dashed var(--rouge);
+      border-radius: 22px;
+      background-color: var(--fond-rose);
+    }
+
+    .carrousel-piste {
+      display: flex;
+      transition: transform 0.45s ease-in-out;
+    }
+
+    .carrousel-slide {
+      min-width: 100%;
+      position: relative;
+    }
+
+    .carrousel-slide img {
+      width: 100%;
+      height: clamp(240px, 48vw, 420px);
+      object-fit: cover;
+      display: block;
+    }
+
+    .carrousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(231, 55, 67, 0.88);
+      color: #ffffff;
+      border: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .carrousel-btn:hover {
+      background-color: var(--rouge-fonce);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .carrousel-btn.prev { left: 12px; }
+    .carrousel-btn.next { right: 12px; }
+
+    .carrousel-points {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+
+    .point {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background-color: rgba(231, 55, 67, 0.35);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .point.actif {
+      background-color: var(--rouge);
+      transform: scale(1.25);
+    }
+
+    /* --- 4. LISTE DES DATES & ICAL --- */
     .liste-dates {
       list-style: none;
       padding: 0;
@@ -254,7 +338,7 @@
       font-size: clamp(1.15rem, 3vw, 1.3rem);
     }
 
-    /* --- 4. LE MOUVEMENT (C'EST QUOI / POUR QUI / POURQUOI) --- */
+    /* --- 5. LE MOUVEMENT (C'EST QUOI / POUR QUI / POURQUOI) --- */
     .grille-mouvement {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -281,7 +365,7 @@
       margin: 0;
     }
 
-    /* --- 5. BÉNÉVOLES (NOUS AVONS BESOIN DE VOUS) --- */
+    /* --- 6. BÉNÉVOLES (NOUS AVONS BESOIN DE VOUS) --- */
     .bloc-benevoles {
       max-width: 700px;
       margin: 0 auto;
@@ -314,7 +398,7 @@
       margin-top: 14px;
     }
 
-    /* --- 6. FACEBOOK & PIED DE PAGE --- */
+    /* --- 7. FACEBOOK & PIED DE PAGE --- */
     .bouton-fb {
       margin-top: 12px;
       padding: 11px 26px;
@@ -353,6 +437,7 @@
       <div class="nav-liens">
         <a href="#accueil">Accueil</a>
         <a href="#infos">Infos pratiques</a>
+        <a href="#galerie" id="nav-galerie" style="display: none;">Photos</a>
         <a href="#dates">Prochaines dates</a>
         <a href="#mouvement">Le mouvement</a>
         <a href="#benevoles">Bénévoles</a>
@@ -406,9 +491,26 @@
       </div>
     </section>
 
+    <!-- 3. CARROUSEL PHOTOS AUTOMATIQUE (s'affiche dès qu'il y a des images dans /photos) -->
+    <div id="bloc-galerie" style="display: none;">
+      <hr class="separateur">
+      <section id="galerie">
+        <h2 class="titre-section gras-rouge">La Kidical Mass en images 📸</h2>
+
+        <div class="carrousel-conteneur" id="carrousel">
+          <div class="carrousel-piste" id="carrousel-piste"></div>
+
+          <button class="carrousel-btn prev" type="button" aria-label="Photo précédente" onclick="changerSlide(-1)">❮</button>
+          <button class="carrousel-btn next" type="button" aria-label="Photo suivante" onclick="changerSlide(1)">❯</button>
+
+          <div class="carrousel-points" id="carrousel-points"></div>
+        </div>
+      </section>
+    </div>
+
     <hr class="separateur">
 
-    <!-- 3. LISTE DES PROCHAINES DATES & ICAL -->
+    <!-- 4. LISTE DES PROCHAINES DATES & ICAL -->
     <section id="dates">
       <h2 class="titre-section gras-rouge">
         👇 Les prochaines Kidical Mass 👇
@@ -420,7 +522,7 @@
 
     <hr class="separateur">
 
-    <!-- 4. LE MOUVEMENT (C'EST QUOI / POUR QUI / POURQUOI) -->
+    <!-- 5. LE MOUVEMENT (C'EST QUOI / POUR QUI / POURQUOI) -->
     <section id="mouvement">
       <h2 class="titre-section gras-bleu">La Kidical Mass, en bref 🌍</h2>
 
@@ -444,7 +546,7 @@
 
     <hr class="separateur">
 
-    <!-- 5. APPEL AUX BÉNÉVOLES -->
+    <!-- 6. APPEL AUX BÉNÉVOLES -->
     <section id="benevoles">
       <h2 class="titre-section gras-rouge">NOUS AVONS BESOIN DE VOUS ! 🦺</h2>
 
@@ -468,7 +570,7 @@
 
     <hr class="separateur">
 
-    <!-- 6. SUIVRE SUR FACEBOOK -->
+    <!-- 7. SUIVRE SUR FACEBOOK -->
     <section id="facebook">
       <h2 class="titre-section gras-rouge">
         Suivez nos prochaines balades et actus ! 🚲
@@ -612,6 +714,91 @@
     } else {
       liste.innerHTML = "<li class='gras-rouge'>Les prochaines dates 2028 seront bientôt annoncées !</li>";
     }
+
+    // 3. Chargement automatique des photos depuis le dossier /photos sur GitHub
+    const utilisateurGitHub = "kidicalmassliege";
+    const depotGitHub = "kidicalmassliege";
+    const dossierPhotos = "photos";
+
+    async function initialiserCarrouselGitHub() {
+      const urlApi = `https://api.github.com/repos/${utilisateurGitHub}/${depotGitHub}/contents/${dossierPhotos}`;
+
+      try {
+        const reponse = await fetch(urlApi);
+        if (!reponse.ok) return;
+
+        const fichiers = await reponse.json();
+        const images = fichiers.filter(f =>
+          f.type === "file" && /\.(jpe?g|png|webp|gif)$/i.test(f.name)
+        );
+
+        if (images.length === 0) return;
+
+        const blocGalerie = document.getElementById("bloc-galerie");
+        const navGalerie = document.getElementById("nav-galerie");
+        const piste = document.getElementById("carrousel-piste");
+        const conteneurPoints = document.getElementById("carrousel-points");
+        const carrousel = document.getElementById("carrousel");
+
+        blocGalerie.style.display = "block";
+        navGalerie.style.display = "inline-block";
+
+        images.forEach((imgData, i) => {
+          const slide = document.createElement("div");
+          slide.className = "carrousel-slide";
+
+          const img = document.createElement("img");
+          img.src = imgData.download_url;
+          img.alt = "Photo de la Kidical Mass Liège";
+          img.loading = i === 0 ? "eager" : "lazy";
+
+          slide.appendChild(img);
+          piste.appendChild(slide);
+
+          const btn = document.createElement("button");
+          btn.className = "point" + (i === 0 ? " actif" : "");
+          btn.type = "button";
+          btn.ariaLabel = `Photo ${i + 1}`;
+          btn.onclick = () => allerASlide(i);
+          conteneurPoints.appendChild(btn);
+        });
+
+        let indexActuel = 0;
+        let timerAuto;
+
+        function allerASlide(n) {
+          indexActuel = (n + images.length) % images.length;
+          piste.style.transform = `translateX(-${indexActuel * 100}%)`;
+          document.querySelectorAll(".point").forEach((p, i) => {
+            p.classList.toggle("actif", i === indexActuel);
+          });
+        }
+
+        window.changerSlide = (delta) => allerASlide(indexActuel + delta);
+
+        const demarrerAuto = () => { timerAuto = setInterval(() => changerSlide(1), 4500); };
+        const arreterAuto = () => clearInterval(timerAuto);
+        carrousel.addEventListener("mouseenter", arreterAuto);
+        carrousel.addEventListener("mouseleave", demarrerAuto);
+        demarrerAuto();
+
+        let touchDebutX = 0;
+        carrousel.addEventListener("touchstart", (e) => {
+          touchDebutX = e.changedTouches[0].screenX;
+          arreterAuto();
+        }, { passive: true });
+        carrousel.addEventListener("touchend", (e) => {
+          const diff = touchDebutX - e.changedTouches[0].screenX;
+          if (Math.abs(diff) > 40) changerSlide(diff > 0 ? 1 : -1);
+          demarrerAuto();
+        }, { passive: true });
+
+      } catch (erreur) {
+        console.warn("Impossible de charger les photos :", erreur);
+      }
+    }
+
+    initialiserCarrouselGitHub();
   </script>
 
 </body>
