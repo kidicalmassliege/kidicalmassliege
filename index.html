@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kidical Mass Liège 🚲 — Une ville où petits et grands enfants se déplacent à vélo</title>
+  <meta name="description" content="Rejoignez la joyeuse Kidical Mass à Liège ! Balades à vélo festives, sécurisées et colorées pour les cyclistes de 0 à 99 ans.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --rouge: #e73743;
+      --rouge-fonce: #c92a35;
+      --bleu: #0b7fa3;
+      --fond-rose: #fffafa;
+      --fond-bleu: #f4fbfd;
+      --texte: #212121;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Comic Neue', cursive, sans-serif;
+      font-weight: 400;
+      color: var(--texte);
+      background-color: #ffffff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      line-height: 1.45;
+      font-size: clamp(1.1rem, 2.4vw, 1.25rem);
+    }
+
+    /* --- BANDEAU BLEU TOUT EN HAUT AVEC LOGO --- */
+    .bandeau-haut {
+      background-color: var(--bleu);
+      color: #ffffff;
+      padding: 24px 16px 32px 16px;
+      border-bottom-left-radius: 50% 24px;
+      border-bottom-right-radius: 50% 24px;
+      box-shadow: 0 4px 12px rgba(11, 127, 163, 0.2);
+    }
+
+    .medaillon-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffffff;
+      padding: 14px 24px;
+      border-radius: 40px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+      max-width: 90%;
+    }
+
+    .logo-principal {
+      max-width: 260px;
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* --- BARRE DE NAVIGATION --- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(6px);
+      border-bottom: 2px dashed rgba(231, 55, 67, 0.35);
+      padding: 10px 16px;
+    }
+
+    .nav-contenu {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .nav-liens {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .nav-liens a {
+      text-decoration: none;
+      color: var(--texte);
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 4px 10px;
+      border-radius: 12px;
+      transition: color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .nav-liens a:hover {
+      color: var(--rouge);
+      background-color: var(--fond-rose);
+    }
+
+    /* --- STRUCTURE PRINCIPALE --- */
+    .conteneur-principal {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 24px 16px 48px 16px;
+    }
+
+    strong, .gras-rouge {
+      color: var(--rouge);
+      font-weight: 700;
+    }
+
+    .gras-bleu {
+      color: var(--bleu);
+      font-weight: 700;
+    }
+
+    .separateur {
+      border: 0;
+      height: 2px;
+      background-image: linear-gradient(to right, transparent, var(--rouge), transparent);
+      margin: 38px auto;
+      max-width: 75%;
+      opacity: 0.4;
+    }
+
+    .titre-section {
+      font-size: clamp(1.65rem, 4vw, 2.15rem);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    /* --- 1. HERO / PROCHAINE DATE --- */
+    .hero {
+      padding: 8px 0 6px 0;
+    }
+
+    .accroche {
+      font-size: clamp(1.85rem, 4.8vw, 2.5rem);
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .carte-prochaine {
+      background-color: var(--fond-rose);
+      border: 3px dashed var(--rouge);
+      border-radius: 22px;
+      padding: 20px 18px;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .date-highlight {
+      font-size: clamp(1.45rem, 3.8vw, 1.85rem);
+      margin: 6px 0 2px 0;
+    }
+
+    .decompte {
+      font-size: clamp(1.25rem, 3.2vw, 1.45rem);
+      margin-bottom: 12px;
+    }
+
+    .lieu {
+      font-size: clamp(1.25rem, 3vw, 1.4rem);
+      margin-bottom: 14px;
+    }
+
+    .programme {
+      margin-top: 10px;
+    }
+
+    /* --- 2. INFOS PRATIQUES --- */
+    .infos-pratiques {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: left;
+      background-color: var(--fond-rose);
+      border: 2px dashed var(--rouge);
+      border-radius: 20px;
+      padding: 20px 22px;
+    }
+
+    .infos-pratiques p {
+      margin: 0 0 14px 0;
+    }
+
+    .infos-pratiques p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* --- 3. LISTE DES DATES & ICAL --- */
+    .liste-dates {
+      list-style: none;
+      padding: 0;
+      margin: 18px auto 0 auto;
+      max-width: 480px;
+    }
+
+    .item-date {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      border: 2px dashed var(--rouge);
+      border-radius: 16px;
+      background-color: var(--fond-rose);
+    }
+
+    .texte-date {
+      font-size: clamp(1.25rem, 3.2vw, 1.45rem);
+      text-align: center;
+    }
+
+    .bouton-rouge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--rouge);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 25px;
+      cursor: pointer;
+      border: none;
+      font-family: 'Comic Neue', cursive, sans-serif;
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+
+    .bouton-rouge:hover {
+      background-color: var(--rouge-fonce);
+      transform: scale(1.03);
+    }
+
+    .bouton-ical {
+      padding: 7px 18px;
+      font-size: clamp(1.05rem, 2.8vw, 1.15rem);
+    }
+
+    .bouton-tout {
+      margin-top: 8px;
+      padding: 11px 26px;
+      font-size: clamp(1.15rem, 3vw, 1.3rem);
+    }
+
+    /* --- 4. LE MOUVEMENT (C'EST QUOI / POUR QUI / POURQUOI) --- */
+    .grille-mouvement {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+      text-align: left;
+    }
+
+    .carte-info {
+      background-color: var(--fond-bleu);
+      border: 2px dashed var(--bleu);
+      border-radius: 18px;
+      padding: 18px 20px;
+    }
+
+    .carte-info h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.45rem;
+      color: var(--bleu);
+      text-align: center;
+    }
+
+    .carte-info p {
+      margin: 0;
+    }
+
+    /* --- 5. BÉNÉVOLES (NOUS AVONS BESOIN DE VOUS) --- */
+    .bloc-benevoles {
+      max-width: 700px;
+      margin: 0 auto;
+      background-color: var(--fond-rose);
+      border: 2px dashed var(--rouge);
+      border-radius: 20px;
+      padding: 22px 24px;
+      text-align: left;
+    }
+
+    .bloc-benevoles p.intro-benevoles {
+      text-align: center;
+      font-weight: 700;
+      margin-top: 0;
+    }
+
+    .liste-roles {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 18px 0;
+    }
+
+    .liste-roles li {
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+
+    .cta-benevoles {
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    /* --- 6. FACEBOOK & PIED DE PAGE --- */
+    .bouton-fb {
+      margin-top: 12px;
+      padding: 11px 26px;
+      font-size: clamp(1.15rem, 3vw, 1.3rem);
+    }
+
+    .icone-fb {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    footer {
+      background-color: var(--bleu);
+      color: #ffffff;
+      padding: 22px 16px;
+      font-size: 1.05rem;
+      border-top-left-radius: 50% 18px;
+      border-top-right-radius: 50% 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BANDEAU BLEU TOUT EN HAUT AVEC VOTRE LOGO -->
+  <header class="bandeau-haut" id="accueil">
+    <div class="medaillon-logo">
+      <img src="logo.png" alt="Logo Kidical Mass Liège" class="logo-principal">
+    </div>
+  </header>
+
+  <!-- BARRE DE NAVIGATION -->
+  <nav>
+    <div class="nav-contenu">
+      <div class="nav-liens">
+        <a href="#accueil">Accueil</a>
+        <a href="#infos">Infos pratiques</a>
+        <a href="#dates">Prochaines dates</a>
+        <a href="#mouvement">Le mouvement</a>
+        <a href="#benevoles">Bénévoles</a>
+        <a href="#facebook">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="conteneur-principal">
+
+    <!-- 1. HERO : PROCHAINE DATE & DÉCOMPTE -->
+    <section class="hero">
+      <h1 class="accroche gras-rouge">
+        Une ville où petits et grands enfants se déplacent à vélo
+      </h1>
+
+      <div class="carte-prochaine">
+        <div>
+          Rejoignez la joyeuse Kidical Mass<br>
+          <div id="prochaine-date" class="date-highlight gras-rouge"></div>
+          <div id="decompte-jours" class="decompte gras-rouge"></div>
+        </div>
+
+        <div class="lieu gras-rouge">
+          📍 Place Xavier Neujean, Liège
+        </div>
+
+        <div class="programme">
+          <strong>13h00 — Activité pour enfants</strong><br>
+          🖌️ Parcours d'Obstacles 🥰
+        </div>
+
+        <div class="programme">
+          <strong>14h00 — Départ de la Kidical Mass</strong><br>
+          Boucle de 6 km à travers la ville
+        </div>
+      </div>
+    </section>
+
+    <hr class="separateur">
+
+    <!-- 2. INFOS PRATIQUES -->
+    <section id="infos">
+      <h2 class="titre-section gras-rouge">Comment ça se passe ? 🚲</h2>
+      <div class="infos-pratiques">
+        <p>🚴‍♀️ Avec vos enfants, vos parents, votre unité scoute, vos amis, sans oublier votre vélo !</p>
+        <p>⏰ À 13h00, les enfants pourront participer à des petits défis bicycliques pour devenir des as de la chaussée et à 14h, la Kidical prendra le départ d'une boucle de 6 km à travers la ville, qui s'arrête notamment sur l'esplanade Saint-Léonard pour un moment plus freestyle.</p>
+        <p>🗺️ Le parcours suit des tronçons permettant un parcours en sécurité et généralement séparé du trafic motorisé. L'avant, l'arrière et les carrefours seront sécurisés par des commissaires de course.</p>
+        <p>🦩 Tous les types de vélos sont les bienvenus : cargo, tandem, cuistax, vélo couché, trottinette ou draisienne. Pensez à pouvoir transporter vos tout-petits s'ils ne tiennent pas la distance.</p>
+        <p>🎉 N'hésitez pas à venir colorés, avec vos drapeaux ou votre vélo-boombox !</p>
+      </div>
+    </section>
+
+    <hr class="separateur">
+
+    <!-- 3. LISTE DES PROCHAINES DATES & ICAL -->
+    <section id="dates">
+      <h2 class="titre-section gras-rouge">
+        👇 Les prochaines Kidical Mass 👇
+      </h2>
+
+      <ul id="conteneur-dates" class="liste-dates"></ul>
+      <div id="conteneur-tout"></div>
+    </section>
+
+    <hr class="separateur">
+
+    <!-- 4. LE MOUVEMENT (C'EST QUOI / POUR QUI / POURQUOI) -->
+    <section id="mouvement">
+      <h2 class="titre-section gras-bleu">La Kidical Mass, en bref 🌍</h2>
+
+      <div class="grille-mouvement">
+        <div class="carte-info">
+          <h3>C'est quoi ?</h3>
+          <p>La Kidical Mass est un mouvement mondial. Depuis 2017, il existe en Allemagne, depuis 2020 à Bruxelles, et pour la première fois à Liège en septembre 2022. Lors de ces manifestations cyclistes colorées, des cyclistes de 0 à 99 ans prennent d'assaut les rues pour revendiquer une mobilité durable !</p>
+        </div>
+
+        <div class="carte-info">
+          <h3>C'est pour qui ?</h3>
+          <p>Les très jeunes et les moins jeunes. Les parents, les célibataires et tous leurs amis. Les décideurs, les petits groupes locaux ou les grandes organisations. Les particuliers et les initiatives locales. Tout le monde peut demander des espaces publics pacifiés.</p>
+        </div>
+
+        <div class="carte-info">
+          <h3>Pourquoi ?</h3>
+          <p>La vision de Kidical Mass est que tous les enfants et les jeunes puissent se déplacer à vélo de manière sûre et autonome. Nous demandons des lieux verts adaptés aux enfants, avec de nombreux espaces pour jouer et interagir avec toutes les générations.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="separateur">
+
+    <!-- 5. APPEL AUX BÉNÉVOLES -->
+    <section id="benevoles">
+      <h2 class="titre-section gras-rouge">NOUS AVONS BESOIN DE VOUS ! 🦺</h2>
+
+      <div class="bloc-benevoles">
+        <p class="intro-benevoles">La Kidical Mass de Liège a besoin de renfort :</p>
+        <ul class="liste-roles">
+          <li>🦺 Vous voulez porter une superbe chasuble et être <strong>commissaire de course</strong> ?</li>
+          <li>📸 Vous voulez nous offrir vos talents de <strong>photographe, vidéaste, pilote de drone ou monteur vidéo</strong> ?</li>
+          <li>📌 Vous voulez venir chercher des <strong>affiches</strong> et en coller à des endroits stratégiques (écoles, lieux culturels, etc.) ?</li>
+          <li>🎨 Ou encore être <strong>community manager</strong> ou <strong>designer web</strong> ?</li>
+        </ul>
+
+        <div class="cta-benevoles">
+          <p>Écrivez-nous un petit message sur notre page Facebook pour rejoindre l'équipe !</p>
+          <a href="https://www.facebook.com/Kidicalmassliege" target="_blank" rel="noopener noreferrer" class="bouton-rouge bouton-fb">
+            Je donne un coup de main 🤝
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <hr class="separateur">
+
+    <!-- 6. SUIVRE SUR FACEBOOK -->
+    <section id="facebook">
+      <h2 class="titre-section gras-rouge">
+        Suivez nos prochaines balades et actus ! 🚲
+      </h2>
+
+      <div>
+        Retrouvez toutes les infos, photos et parcours sur notre page Facebook :
+      </div>
+
+      <a href="https://www.facebook.com/Kidicalmassliege" target="_blank" rel="noopener noreferrer" class="bouton-rouge bouton-fb">
+        <svg class="icone-fb" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
+        </svg>
+        Kidical Mass Liège
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <strong>Kidical Mass Liège</strong> — Place Xavier Neujean, 4000 Liège 🚲
+  </footer>
+
+  <script>
+    const echeances = [
+      { annee: 2027, mois: 2, jour: 28, date: new Date(2027, 2, 28), texte: "dimanche 28 mars 2027", texteMaj: "Dimanche 28 mars 2027" },
+      { annee: 2027, mois: 4, jour: 30, date: new Date(2027, 4, 30), texte: "dimanche 30 mai 2027", texteMaj: "Dimanche 30 mai 2027" },
+      { annee: 2027, mois: 8, jour: 19, date: new Date(2027, 8, 19), texte: "dimanche 19 septembre 2027", texteMaj: "Dimanche 19 septembre 2027" },
+      { annee: 2027, mois: 10, jour: 14, date: new Date(2027, 10, 14), texte: "dimanche 14 novembre 2027", texteMaj: "Dimanche 14 novembre 2027" },
+      { annee: 2027, mois: 11, jour: 12, date: new Date(2027, 11, 12), texte: "dimanche 12 décembre 2027", texteMaj: "Dimanche 12 décembre 2027" }
+    ];
+
+    const aujourdhui = new Date();
+    aujourdhui.setHours(0, 0, 0, 0);
+
+    // 1. Prochaine date & décompte
+    const prochaine = echeances.find(item => item.date >= aujourdhui);
+    const conteneurDate = document.getElementById("prochaine-date");
+    const conteneurDecompte = document.getElementById("decompte-jours");
+
+    if (prochaine) {
+      conteneurDate.textContent = prochaine.texte;
+
+      const msParJour = 1000 * 60 * 60 * 24;
+      const diffJours = Math.round((prochaine.date - aujourdhui) / msParJour);
+
+      if (diffJours === 0) {
+        conteneurDecompte.textContent = "C'est aujourd'hui ! 🚲🎉";
+      } else if (diffJours === 1) {
+        conteneurDecompte.textContent = "C'est demain !";
+      } else if (diffJours < 7) {
+        conteneurDecompte.textContent = "C'est dimanche prochain !";
+      } else {
+        conteneurDecompte.textContent = `C'est dans ${diffJours} jours !`;
+      }
+    } else {
+      conteneurDate.textContent = "Prochaines dates 2028 bientôt annoncées !";
+      conteneurDecompte.style.display = "none";
+    }
+
+    // 2. Liste des dates & génération .ics
+    const datesAVenir = echeances.filter(item => item.date >= aujourdhui);
+    const liste = document.getElementById("conteneur-dates");
+    const conteneurTout = document.getElementById("conteneur-tout");
+    const pad = (n) => String(n).padStart(2, '0');
+
+    function creerBlocVevent(item) {
+      const y = item.annee;
+      const m = pad(item.mois + 1);
+      const d = pad(item.jour);
+
+      return [
+        "BEGIN:VEVENT",
+        `UID:kidicalmass-liege-${y}${m}${d}@kidicalmassliege`,
+        `DTSTAMP:${y}${m}${d}T100000Z`,
+        `DTSTART;TZID=Europe/Brussels:${y}${m}${d}T130000`,
+        `DTEND;TZID=Europe/Brussels:${y}${m}${d}T160000`,
+        "SUMMARY:Kidical Mass Liège 🚲",
+        "LOCATION:Place Xavier Neujean, 4000 Liège, Belgique",
+        "DESCRIPTION:Une ville où petits et grands enfants se déplacent à vélo !\\n13h00 : Défis bicycliques et Parcours d'Obstacles pour enfants\\n14h00 : Départ de la Kidical Mass (boucle de 6 km à travers la ville)",
+        "END:VEVENT"
+      ].join("\r\n");
+    }
+
+    function telechargerIcal(items, nomFichier) {
+      const vevents = items.map(creerBlocVevent).join("\r\n");
+
+      const contenuIcs = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Kidical Mass Liege//Calendrier//FR",
+        "CALSCALE:GREGORIAN",
+        vevents,
+        "END:VCALENDAR"
+      ].join("\r\n");
+
+      const blob = new Blob([contenuIcs], { type: "text/calendar;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const lien = document.createElement("a");
+      lien.href = url;
+      lien.download = nomFichier;
+      document.body.appendChild(lien);
+      lien.click();
+      document.body.removeChild(lien);
+      URL.revokeObjectURL(url);
+    }
+
+    if (datesAVenir.length > 0) {
+      datesAVenir.forEach(item => {
+        const li = document.createElement("li");
+        li.className = "item-date";
+
+        const spanDate = document.createElement("span");
+        spanDate.className = "texte-date gras-rouge";
+        spanDate.textContent = item.texteMaj;
+
+        const bouton = document.createElement("button");
+        bouton.className = "bouton-rouge bouton-ical";
+        bouton.type = "button";
+        bouton.textContent = "➕ Ajouter à l'agenda";
+        bouton.onclick = () => {
+          const y = item.annee;
+          const m = pad(item.mois + 1);
+          const d = pad(item.jour);
+          telechargerIcal([item], `Kidical-Mass-Liege-${y}-${m}-${d}.ics`);
+        };
+
+        li.appendChild(spanDate);
+        li.appendChild(bouton);
+        liste.appendChild(li);
+      });
+
+      if (datesAVenir.length > 1) {
+        const boutonTout = document.createElement("button");
+        boutonTout.className = "bouton-rouge bouton-tout";
+        boutonTout.type = "button";
+        boutonTout.textContent = "🗓️ Ajouter toutes les dates";
+        boutonTout.onclick = () => telechargerIcal(datesAVenir, "Kidical-Mass-Liege-Toutes-les-dates.ics");
+        conteneurTout.appendChild(boutonTout);
+      }
+    } else {
+      liste.innerHTML = "<li class='gras-rouge'>Les prochaines dates 2028 seront bientôt annoncées !</li>";
+    }
+  </script>
+
+</body>
+</html>
