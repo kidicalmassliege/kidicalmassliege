@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kidical Mass Liège 🚲 — Une ville où petits et grands enfants se déplacent à vélo</title>
+  <title>Kidical Mass Liège — Une ville où petits et grands enfants se déplacent à vélo</title>
   <meta name="description" content="Rejoignez la joyeuse Kidical Mass à Liège ! Balades à vélo festives, sécurisées et colorées pour les cyclistes de 0 à 99 ans.">
   <link rel="icon" type="image/svg+xml" href="kidical%20round.svg">
   <link rel="apple-touch-icon" href="kidical%20round.svg">
@@ -342,13 +342,14 @@
     }
 
     .item-faq summary::after {
-      content: "➕";
-      font-size: 0.95rem;
+      content: "+";
+      font-size: 1.4rem;
+      line-height: 1;
       flex-shrink: 0;
     }
 
     .item-faq[open] summary::after {
-      content: "➖";
+      content: "−";
     }
 
     .item-faq p {
@@ -534,6 +535,16 @@
       border: 2.5px dashed var(--bleu);
       border-radius: 20px;
       padding: 20px 22px;
+      transition: transform 0.2s var(--rebond);
+    }
+
+    .carte-info:hover {
+      transform: translateY(-3px);
+    }
+
+    .carte-info.carte-rouge {
+      background-color: var(--fond-rose);
+      border-color: var(--rouge);
     }
 
     .carte-info h3 {
@@ -541,6 +552,10 @@
       font-size: 1.5rem;
       color: var(--bleu);
       text-align: center;
+    }
+
+    .carte-info.carte-rouge h3 {
+      color: var(--rouge);
     }
 
     .carte-info p {
@@ -672,14 +687,12 @@
     }
 
     .liste-roles {
-      list-style: none;
-      padding: 0;
+      padding-left: 22px;
       margin: 14px 0 18px 0;
     }
 
     .liste-roles li {
       margin-bottom: 12px;
-      padding-left: 4px;
     }
 
     .cta-benevoles {
@@ -851,18 +864,18 @@
         </h1>
 
         <div class="carte-prochaine">
-          <div class="etiquette-prochaine">🚲 Prochaine édition à Liège</div>
+          <div class="etiquette-prochaine">Prochaine édition à Liège</div>
           <div id="prochaine-date" class="date-highlight gras-rouge"></div>
           <div>
             <span id="decompte-jours" class="decompte-badge"></span>
           </div>
 
           <div class="lieu gras-rouge">
-            📍 Place Xavier Neujean, Liège
+            Place Xavier Neujean, Liège
           </div>
 
           <p class="accroche-ambiance">
-            En famille ou entre amis : sortez vos plus beaux déguisements, drapeaux et vélos-boombox ! 🎉
+            En famille ou entre amis : sortez vos plus beaux déguisements, drapeaux et vélos-boombox !
           </p>
 
           <div class="timeline">
@@ -875,8 +888,8 @@
             <!-- Intervalle 13h00 -> 14h00 -->
             <div class="intervalle-activite">
               <div class="carte-intervalle">
-                <strong>🖌️ Activité pour enfants</strong><br>
-                Petits défis bicycliques & Parcours d'Obstacles 🥰
+                <strong>Activité pour enfants</strong><br>
+                Petits défis bicycliques & Parcours d'Obstacles
               </div>
             </div>
 
@@ -889,7 +902,7 @@
             <!-- Intervalle 14h00 -> 16h00 max -->
             <div class="intervalle-activite">
               <div class="carte-intervalle">
-                <strong>🚲 La balade à vélo</strong><br>
+                <strong>La balade à vélo</strong><br>
                 Boucle de 6 km à travers la ville, avec un arrêt <em>freestyle</em> sur l'esplanade Saint-Léo ou au B3
               </div>
             </div>
@@ -901,7 +914,7 @@
             </div>
 
             <div class="apres-arrivee">
-              Et un petit verre si ça vous dit ! 🍻🥤
+              Et un petit verre si ça vous dit !
             </div>
           </div>
         </div>
@@ -911,7 +924,7 @@
     <!-- 2. MINI FAQ (BANDE PLEINE LARGEUR BLEU DOUX) -->
     <section class="bande-bleue" id="faq">
       <div class="conteneur-interne">
-        <h2 class="titre-section gras-bleu">Questions fréquentes 🤔</h2>
+        <h2 class="titre-section gras-bleu">Questions fréquentes</h2>
 
         <div class="liste-faq">
           <details class="item-faq">
@@ -945,13 +958,13 @@
     <!-- 3. CARROUSEL PHOTOS AUTOMATIQUE -->
     <section class="bande-blanche" id="galerie" style="display: none;">
       <div class="conteneur-interne">
-        <h2 class="titre-section gras-rouge">La Kidical Mass en images 📸</h2>
+        <h2 class="titre-section gras-rouge">La Kidical Mass en images</h2>
 
         <div class="carrousel-conteneur" id="carrousel">
           <div class="carrousel-piste" id="carrousel-piste"></div>
 
-          <button class="carrousel-btn prev" type="button" aria-label="Photo précédente" onclick="changerSlide(-1)">❮</button>
-          <button class="carrousel-btn next" type="button" aria-label="Photo suivante" onclick="changerSlide(1)">❯</button>
+          <button class="carrousel-btn prev" type="button" aria-label="Photo précédente" onclick="changerSlide(-1)">&#10094;</button>
+          <button class="carrousel-btn next" type="button" aria-label="Photo suivante" onclick="changerSlide(1)">&#10095;</button>
 
           <div class="carrousel-points" id="carrousel-points"></div>
         </div>
@@ -962,7 +975,7 @@
     <section class="bande-blanche" id="dates">
       <div class="conteneur-interne">
         <h2 class="titre-section gras-rouge">
-          👇 Les prochaines Kidical Mass 👇
+          Les prochaines Kidical Mass
         </h2>
 
         <ul id="conteneur-dates" class="liste-dates"></ul>
@@ -973,28 +986,28 @@
     <!-- 5. LE MOUVEMENT & CARTE DES KIDICAL MASS VOISINES -->
     <section class="bande-bleue" id="mouvement">
       <div class="conteneur-interne">
-        <h2 class="titre-section gras-bleu">La Kidical Mass, en bref 🌍</h2>
+        <h2 class="titre-section gras-bleu">La Kidical Mass, en bref</h2>
 
         <div class="grille-mouvement">
           <div class="carte-info">
             <h3>C'est quoi ?</h3>
-            <p>La Kidical Mass est un mouvement mondial. Depuis 2017, il existe en Allemagne (notamment à Cologne, qui nous a inspirés dès nos débuts !), depuis 2020 à Bruxelles, et pour la première fois à Liège en septembre 2022. Lors de ces manifestations cyclistes colorées, des cyclistes de 0 à 99 ans prennent d'assaut les rues pour revendiquer une mobilité durable !</p>
+            <p>La Kidical Mass est un <span class="gras-bleu">mouvement mondial</span>. Depuis 2017, il existe en Allemagne (notamment à <strong>Cologne</strong>, qui nous a inspirés dès nos débuts !), depuis 2020 à Bruxelles, et pour la première fois à <span class="gras-bleu">Liège en septembre 2022</span>. Lors de ces manifestations cyclistes colorées, des cyclistes de <strong>0 à 99 ans</strong> prennent d'assaut les rues pour revendiquer une <span class="gras-bleu">mobilité durable</span> !</p>
           </div>
 
-          <div class="carte-info">
+          <div class="carte-info carte-rouge">
             <h3>C'est pour qui ?</h3>
-            <p>Les très jeunes et les moins jeunes. Les parents, les célibataires et tous leurs amis. Les décideurs, les petits groupes locaux ou les grandes organisations. Les particuliers et les initiatives locales. Tout le monde peut demander des espaces publics pacifiés.</p>
+            <p>Les <strong>très jeunes</strong> et les <strong>moins jeunes</strong>. Les parents, les célibataires et tous leurs amis. Les décideurs, les petits groupes locaux ou les grandes organisations. Les particuliers et les initiatives locales. <span class="gras-bleu">Tout le monde</span> peut demander des <strong>espaces publics pacifiés</strong>.</p>
           </div>
 
           <div class="carte-info">
             <h3>Pourquoi ?</h3>
-            <p>La vision de Kidical Mass est que tous les enfants et les jeunes puissent se déplacer à vélo de manière sûre et autonome. Nous demandons des lieux verts adaptés aux enfants, avec de nombreux espaces pour jouer et interagir avec toutes les générations.</p>
+            <p>La vision de Kidical Mass est que <strong>tous les enfants et les jeunes</strong> puissent se déplacer à vélo de manière <span class="gras-bleu">sûre et autonome</span>. Nous demandons des <strong>lieux verts adaptés aux enfants</strong>, avec de nombreux espaces pour jouer et interagir avec <span class="gras-bleu">toutes les générations</span>.</p>
           </div>
         </div>
 
         <!-- Carte interactive des Kidical Mass voisines & inspirantes -->
         <div class="bloc-carte-voisines">
-          <h3>Les Kidical Mass près de chez nous (et nos inspirations) 🗺️</h3>
+          <h3>Les Kidical Mass près de chez nous (et nos inspirations)</h3>
           <p style="margin: 0 auto; max-width: 600px;">
             Cliquez sur une ville ou un point sur la carte pour découvrir les collectifs voisins :
           </p>
@@ -1008,21 +1021,21 @@
     <!-- 6. APPEL AUX BÉNÉVOLES -->
     <section class="bande-blanche" id="benevoles">
       <div class="conteneur-interne">
-        <h2 class="titre-section gras-rouge">NOUS AVONS BESOIN DE VOUS ! 🦺</h2>
+        <h2 class="titre-section gras-rouge">NOUS AVONS BESOIN DE VOUS !</h2>
 
         <div class="bloc-benevoles">
           <p class="intro-benevoles">La Kidical Mass de Liège a besoin de renfort :</p>
           <ul class="liste-roles">
-            <li>🦺 Vous voulez porter une superbe chasuble et être <strong>commissaire de course</strong> ?</li>
-            <li>📸 Vous voulez nous offrir vos talents de <strong>photographe, vidéaste, pilote de drone ou monteur vidéo</strong> ?</li>
-            <li>📌 Vous voulez venir chercher des <strong>affiches</strong> et en coller à des endroits stratégiques (écoles, lieux culturels, etc.) ?</li>
-            <li>🎨 Ou encore être <strong>community manager</strong> ou <strong>designer web</strong> ?</li>
+            <li>Vous voulez porter une superbe chasuble et être <strong>commissaire de course</strong> ?</li>
+            <li>Vous voulez nous offrir vos talents de <strong>photographe, vidéaste, pilote de drone ou monteur vidéo</strong> ?</li>
+            <li>Vous voulez venir chercher des <strong>affiches</strong> et en coller à des endroits stratégiques (écoles, lieux culturels, etc.) ?</li>
+            <li>Ou encore être <strong>community manager</strong> ou <strong>designer web</strong> ?</li>
           </ul>
 
           <div class="cta-benevoles">
             <p>Écrivez-nous un petit message sur notre page Facebook pour rejoindre l'équipe !</p>
             <a href="https://www.facebook.com/Kidicalmassliege" target="_blank" rel="noopener noreferrer" class="bouton-rouge bouton-fb">
-              Je donne un coup de main 🤝
+              Je donne un coup de main
             </a>
           </div>
         </div>
@@ -1032,7 +1045,7 @@
     <!-- 6b. SOUTENIR / DON PAR VIREMENT SEPA & QR CODE -->
     <section class="bande-bleue" id="soutenir">
       <div class="conteneur-interne">
-        <h2 class="titre-section gras-bleu">Soutenir la Kidical Mass 💛</h2>
+        <h2 class="titre-section gras-bleu">Soutenir la Kidical Mass</h2>
         <p style="max-width: 640px; margin: 0 auto 20px auto;">
           La Kidical Mass est 100 % gratuite et portée par des bénévoles. Vos dons nous aident à imprimer des affiches, acheter des chasubles et animer le parcours d'obstacles pour les enfants !
         </p>
@@ -1041,7 +1054,7 @@
           <div class="grille-don">
             <div class="boite-qr">
               <div id="qr-sepa" title="Scannez avec votre application bancaire"></div>
-              <span class="legende-qr">📱 À scanner avec votre app bancaire</span>
+              <span class="legende-qr">À scanner avec votre app bancaire</span>
             </div>
 
             <div class="details-don">
@@ -1059,7 +1072,7 @@
                 <div style="margin-top: 6px;"><strong>IBAN :</strong></div>
                 <span class="iban-texte" id="texte-iban">BE64 5230 8141 9552</span>
                 <button type="button" class="bouton-bleu" id="btn-copier-iban" onclick="copierIban()">
-                  📋 Copier l'IBAN
+                  Copier l'IBAN
                 </button>
               </div>
             </div>
@@ -1072,7 +1085,7 @@
     <section class="bande-blanche" id="facebook" style="padding-bottom: 54px;">
       <div class="conteneur-interne">
         <h2 class="titre-section gras-rouge">
-          Suivez nos prochaines balades et actus ! 🚲
+          Suivez nos prochaines balades et actus !
         </h2>
 
         <div>
@@ -1091,7 +1104,7 @@
   </main>
 
   <footer>
-    <strong>Kidical Mass Liège</strong> 🚲
+    <strong>Kidical Mass Liège</strong>
   </footer>
 
   <script>
@@ -1118,7 +1131,7 @@
       const diffJours = Math.round((prochaine.date - aujourdhui) / msParJour);
 
       if (diffJours === 0) {
-        conteneurDecompte.textContent = "C'est aujourd'hui ! 🚲🎉";
+        conteneurDecompte.textContent = "C'est aujourd'hui !";
       } else if (diffJours === 1) {
         conteneurDecompte.textContent = "C'est demain !";
       } else if (diffJours < 7) {
@@ -1148,7 +1161,7 @@
         `DTSTAMP:${y}${m}${d}T100000Z`,
         `DTSTART;TZID=Europe/Brussels:${y}${m}${d}T130000`,
         `DTEND;TZID=Europe/Brussels:${y}${m}${d}T160000`,
-        "SUMMARY:Kidical Mass Liège 🚲",
+        "SUMMARY:Kidical Mass Liège",
         "LOCATION:Place Xavier Neujean, 4000 Liège, Belgique",
         "DESCRIPTION:Une ville où petits et grands enfants se déplacent à vélo !\\n13h00 : Rendez-vous sur place (défis bicycliques & Parcours d'Obstacles pour enfants)\\n14h00 : Départ de la Kidical Mass (boucle de 6 km, arrêt freestyle esplanade Saint-Léo ou B3)\\n16h00 max : Arrivée Place Xavier Neujean et un petit verre si ça vous dit !",
         "END:VEVENT"
@@ -1190,7 +1203,7 @@
         const bouton = document.createElement("button");
         bouton.className = "bouton-rouge bouton-ical";
         bouton.type = "button";
-        bouton.textContent = "➕ Ajouter à l'agenda";
+        bouton.textContent = "+ Ajouter à l'agenda";
         bouton.onclick = () => {
           const y = item.annee;
           const m = pad(item.mois + 1);
@@ -1207,7 +1220,7 @@
         const boutonTout = document.createElement("button");
         boutonTout.className = "bouton-rouge bouton-tout";
         boutonTout.type = "button";
-        boutonTout.textContent = "🗓️ Ajouter toutes les dates";
+        boutonTout.textContent = "Ajouter toutes les dates";
         boutonTout.onclick = () => telechargerIcal(datesAVenir, "Kidical-Mass-Liege-Toutes-les-dates.ics");
         conteneurTout.appendChild(boutonTout);
       }
@@ -1314,15 +1327,6 @@
         estLiege: true
       },
       {
-        nom: "Kidical Mass Aachen",
-        coords: [50.7753, 6.0839],
-        distance: "À ~45 km de Liège",
-        description: "Nos voisins d'Aix-la-Chapelle (Radentscheid Aachen).",
-        url: "https://radentscheid-aachen.de/events/kidical-mass/",
-        externe: true,
-        estLiege: false
-      },
-      {
         nom: "Kidical Mass Namur",
         coords: [50.4674, 4.8719],
         distance: "À ~65 km de Liège",
@@ -1345,7 +1349,7 @@
         coords: [50.9375, 6.9603],
         distance: "À ~120 km de Liège",
         description: "Le berceau européen du mouvement depuis 2017, qui a inspiré Liège !",
-        url: "https://kidicalmasskoeln.org/",
+        url: "https://kidicalmassschaelsick.org/",
         externe: true,
         estLiege: false
       },
@@ -1387,7 +1391,7 @@
         });
 
         const cibleLien = lieu.externe ? 'target="_blank" rel="noopener noreferrer"' : "";
-        const texteLien = lieu.externe ? "Voir leur site ↗" : "Retour en haut ↑";
+        const texteLien = lieu.externe ? "Voir leur site" : "Retour en haut";
         const couleurTitre = lieu.estLiege ? "#e73743" : "#0b7fa3";
 
         const popupHtml = `
@@ -1459,8 +1463,8 @@
       const iban = "BE64 5230 8141 9552";
       const btn = document.getElementById("btn-copier-iban");
       navigator.clipboard.writeText(iban).then(() => {
-        btn.textContent = "✅ IBAN copié !";
-        setTimeout(() => { btn.textContent = "📋 Copier l'IBAN"; }, 2500);
+        btn.textContent = "IBAN copié !";
+        setTimeout(() => { btn.textContent = "Copier l'IBAN"; }, 2500);
       });
     };
 
