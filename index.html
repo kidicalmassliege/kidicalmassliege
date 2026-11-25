@@ -603,20 +603,27 @@
       height: 360px;
       border-radius: 16px;
       border: 2px dashed rgba(11, 127, 163, 0.45);
+      background-color: #f8fafc;
       z-index: 1;
     }
 
-    .pin-velo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 34px;
-      height: 34px;
+    .pin-simple {
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      color: #ffffff;
-      font-size: 1.15rem;
       border: 3px solid #ffffff;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+      transition: transform 0.15s ease;
+    }
+
+    .pin-simple.liege {
+      width: 22px;
+      height: 22px;
+      border-width: 3.5px;
+    }
+
+    .pin-simple:hover {
+      transform: scale(1.25);
     }
 
     .leaflet-popup-content {
@@ -989,7 +996,7 @@
         <div class="bloc-carte-voisines">
           <h3>Les Kidical Mass près de chez nous (et nos inspirations) 🗺️</h3>
           <p style="margin: 0 auto; max-width: 600px;">
-            Cliquez sur une ville pour découvrir les collectifs voisins en Belgique et en Allemagne :
+            Cliquez sur une ville ou un point sur la carte pour découvrir les collectifs voisins :
           </p>
 
           <div class="pills-villes" id="liste-pills-villes"></div>
@@ -1295,7 +1302,7 @@
 
     initialiserCarrouselGitHub();
 
-    // 4. Carte interactive des Kidical Mass voisines (Leaflet + OpenStreetMap)
+    // 4. Carte interactive des Kidical Mass voisines (fond blanc Positron + pins épurés)
     const lieuxKidical = [
       {
         nom: "Kidical Mass Liège",
@@ -1360,20 +1367,23 @@
 
       const carte = L.map("carte-kidical", { scrollWheelZoom: false }).setView([50.70, 5.45], 8);
 
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: "abcd",
+        maxZoom: 19
       }).addTo(carte);
 
       const marqueurs = [];
 
       lieuxKidical.forEach((lieu) => {
         const couleur = lieu.estLiege ? "#e73743" : "#0b7fa3";
+        const taille = lieu.estLiege ? 22 : 18;
         const icone = L.divIcon({
           className: "",
-          html: `<div class="pin-velo" style="background-color:${couleur};">🚲</div>`,
-          iconSize: [34, 34],
-          iconAnchor: [17, 17],
-          popupAnchor: [0, -16]
+          html: `<div class="pin-simple${lieu.estLiege ? " liege" : ""}" style="background-color:${couleur};"></div>`,
+          iconSize: [taille, taille],
+          iconAnchor: [taille / 2, taille / 2],
+          popupAnchor: [0, -(taille / 2)]
         });
 
         const cibleLien = lieu.externe ? 'target="_blank" rel="noopener noreferrer"' : "";
@@ -1383,7 +1393,7 @@
         const popupHtml = `
           <div>
             <div class="popup-titre" style="color:${couleurTitre};">${lieu.nom}</div>
-            <div style="font-weight:700; font-size:0.9rem; margin-bottom:4px;">📍 ${lieu.distance}</div>
+            <div style="font-weight:700; font-size:0.9rem; margin-bottom:4px;">${lieu.distance}</div>
             <div style="font-size:0.95rem;">${lieu.description}</div>
             <a href="${lieu.url}" ${cibleLien} class="popup-lien">${texteLien}</a>
           </div>
@@ -1395,7 +1405,7 @@
         const pill = document.createElement("button");
         pill.type = "button";
         pill.className = "pill-ville" + (lieu.estLiege ? " liege" : "");
-        pill.textContent = (lieu.estLiege ? "❤️ " : "📍 ") + lieu.nom.replace("Kidical Mass ", "");
+        pill.textContent = lieu.nom.replace("Kidical Mass ", "");
         pill.onclick = () => {
           carte.flyTo(lieu.coords, 10, { duration: 0.7 });
           marqueur.openPopup();
