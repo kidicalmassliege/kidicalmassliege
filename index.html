@@ -161,9 +161,10 @@
       margin: 0 0 18px 0;
     }
 
-    /* --- 1. HERO / PROCHAINE DATE (TIMELINE) --- */
+    /* --- 1. HERO / PROCHAINE DATE (TIMELINE À JALONS FIXES) --- */
     .hero {
       padding-top: 28px;
+      padding-bottom: 46px;
     }
 
     .accroche {
@@ -178,7 +179,7 @@
       border: 3px dashed var(--rouge);
       border-radius: 24px;
       padding: 24px 20px;
-      max-width: 580px;
+      max-width: 600px;
       margin: 0 auto;
       position: relative;
     }
@@ -221,36 +222,47 @@
     .lieu {
       font-size: clamp(1.15rem, 3vw, 1.3rem);
       font-weight: 700;
-      margin-bottom: 18px;
+      margin-bottom: 10px;
     }
 
-    /* Timeline 13h / 14h / 16h */
+    .accroche-ambiance {
+      font-size: clamp(1rem, 2.4vw, 1.1rem);
+      max-width: 490px;
+      margin: 0 auto 22px auto;
+      padding: 8px 14px;
+      background-color: #ffffff;
+      border-radius: 14px;
+      border: 1.5px dashed rgba(231, 55, 67, 0.35);
+    }
+
+    /* Timeline : jalons horaires fixes + activités dans les intervalles */
     .timeline {
       text-align: left;
-      max-width: 440px;
+      max-width: 470px;
       margin: 0 auto;
-      border-left: 3px dashed var(--rouge);
-      padding-left: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+      padding-left: 10px;
     }
 
-    .etape-timeline {
+    .jalon-horaire {
       position: relative;
+      padding-left: 24px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .etape-timeline::before {
+    .jalon-horaire::before {
       content: "";
       position: absolute;
-      left: -28px;
-      top: 4px;
-      width: 13px;
-      height: 13px;
+      left: -6px;
+      width: 15px;
+      height: 15px;
       background-color: var(--rouge);
       border: 3px solid #ffffff;
       border-radius: 50%;
       box-shadow: 0 0 0 2px var(--rouge);
+      z-index: 2;
     }
 
     .heure-pill {
@@ -259,32 +271,39 @@
       color: #ffffff;
       font-family: 'Comic Neue', cursive, sans-serif;
       font-weight: 700;
-      font-size: 1rem;
-      padding: 2px 10px;
-      border-radius: 10px;
-      margin-right: 6px;
+      font-size: 1.05rem;
+      padding: 2px 12px;
+      border-radius: 12px;
     }
 
-    /* --- 2. INFOS PRATIQUES --- */
-    .infos-pratiques {
-      max-width: 720px;
-      margin: 0 auto;
-      text-align: left;
-      background-color: var(--fond-rose);
-      border: 2.5px dashed var(--rouge);
-      border-radius: 22px;
-      padding: 22px 24px;
+    .jalon-titre {
+      font-weight: 800;
+      color: var(--texte);
+      font-size: 1.05rem;
     }
 
-    .infos-pratiques p {
-      margin: 0 0 14px 0;
+    .intervalle-activite {
+      margin-left: 0;
+      padding: 10px 0 10px 24px;
+      border-left: 3px dashed var(--rouge);
     }
 
-    .infos-pratiques p:last-child {
-      margin-bottom: 0;
+    .carte-intervalle {
+      background-color: #ffffff;
+      border: 1.5px dashed rgba(11, 127, 163, 0.45);
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-size: 1.02rem;
     }
 
-    /* --- 2b. MINI FAQ --- */
+    .apres-arrivee {
+      padding-left: 24px;
+      margin-top: 6px;
+      font-weight: 600;
+      color: var(--bleu-fonce);
+    }
+
+    /* --- 2. MINI FAQ --- */
     .liste-faq {
       max-width: 720px;
       margin: 0 auto;
@@ -704,7 +723,6 @@
     <div class="nav-contenu">
       <div class="nav-liens">
         <a href="#accueil">Accueil</a>
-        <a href="#infos">Infos pratiques</a>
         <a href="#faq">FAQ</a>
         <a href="#galerie" id="nav-galerie" style="display: none;">Photos</a>
         <a href="#dates">Prochaines dates</a>
@@ -718,7 +736,7 @@
 
   <main>
 
-    <!-- 1. HERO : PROCHAINE DATE & TIMELINE -->
+    <!-- 1. HERO : PROCHAINE DATE & TIMELINE À JALONS FIXES -->
     <section class="bande-blanche hero">
       <div class="conteneur-interne">
         <h1 class="accroche gras-rouge">
@@ -736,39 +754,54 @@
             📍 Place Xavier Neujean, Liège
           </div>
 
+          <p class="accroche-ambiance">
+            En famille ou entre amis : sortez vos plus beaux déguisements, drapeaux et vélos-boombox ! 🎉
+          </p>
+
           <div class="timeline">
-            <div class="etape-timeline">
-              <div><span class="heure-pill">13h00</span> <strong>Activité pour enfants</strong></div>
-              <div>🖌️ Parcours d'Obstacles 🥰</div>
+            <!-- Jalon 13h00 -->
+            <div class="jalon-horaire">
+              <span class="heure-pill">13h00</span>
+              <span class="jalon-titre">Rendez-vous sur place</span>
             </div>
-            <div class="etape-timeline">
-              <div><span class="heure-pill">14h00</span> <strong>Départ de la Kidical Mass</strong></div>
-              <div>Boucle de 6 km à travers la ville</div>
+
+            <!-- Intervalle 13h00 -> 14h00 -->
+            <div class="intervalle-activite">
+              <div class="carte-intervalle">
+                <strong>🖌️ Activité pour enfants</strong><br>
+                Petits défis bicycliques & Parcours d'Obstacles 🥰
+              </div>
             </div>
-            <div class="etape-timeline">
-              <div><span class="heure-pill">16h00 max</span> <strong>Arrivée de la balade</strong></div>
-              <div>Et un petit verre si ça vous dit ! 🍻🥤</div>
+
+            <!-- Jalon 14h00 -->
+            <div class="jalon-horaire">
+              <span class="heure-pill">14h00</span>
+              <span class="jalon-titre">Départ de la Kidical Mass</span>
+            </div>
+
+            <!-- Intervalle 14h00 -> 16h00 max -->
+            <div class="intervalle-activite">
+              <div class="carte-intervalle">
+                <strong>🚲 La balade à vélo</strong><br>
+                Boucle de 6 km à travers la ville, avec un arrêt <em>freestyle</em> sur l'esplanade Saint-Léo ou au B3
+              </div>
+            </div>
+
+            <!-- Jalon 16h00 max -->
+            <div class="jalon-horaire">
+              <span class="heure-pill">16h00 max</span>
+              <span class="jalon-titre">Arrivée Place Xavier Neujean</span>
+            </div>
+
+            <div class="apres-arrivee">
+              Et un petit verre si ça vous dit ! 🍻🥤
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 2. INFOS PRATIQUES -->
-    <section class="bande-blanche" id="infos" style="padding-top: 8px;">
-      <div class="conteneur-interne">
-        <h2 class="titre-section gras-rouge">Comment ça se passe ? 🚲</h2>
-        <div class="infos-pratiques">
-          <p>🚴‍♀️ Avec vos enfants, vos parents, votre unité scoute, vos amis, sans oublier votre vélo !</p>
-          <p>⏰ À 13h00, les enfants pourront participer à des petits défis bicycliques pour devenir des as de la chaussée et à 14h, la Kidical prendra le départ d'une boucle de 6 km à travers la ville, qui s'arrête notamment sur l'esplanade Saint-Léonard pour un moment plus freestyle.</p>
-          <p>🗺️ Le parcours suit des tronçons permettant un parcours en sécurité et généralement séparé du trafic motorisé. L'avant, l'arrière et les carrefours seront sécurisés par des commissaires de course.</p>
-          <p>🦩 Tous les types de vélos sont les bienvenus : cargo, tandem, cuistax, vélo couché, trottinette ou draisienne. Pensez à pouvoir transporter vos tout-petits s'ils ne tiennent pas la distance.</p>
-          <p>🎉 N'hésitez pas à venir colorés, avec vos drapeaux ou votre vélo-boombox !</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 2b. MINI FAQ (BANDE PLEINE LARGEUR BLEU DOUX) -->
+    <!-- 2. MINI FAQ (BANDE PLEINE LARGEUR BLEU DOUX) -->
     <section class="bande-bleue" id="faq">
       <div class="conteneur-interne">
         <h2 class="titre-section gras-bleu">Questions fréquentes 🤔</h2>
@@ -786,7 +819,7 @@
 
           <details class="item-faq">
             <summary>Le parcours est-il vraiment sécurisé ?</summary>
-            <p>Tout à fait : l'itinéraire de 6 km privilégie les voies apaisées et pistes cyclables, et notre équipe de <strong>commissaires de course</strong> en chasuble sécurise chaque carrefour ainsi que l'avant et l'arrière du peloton. Le port du casque est vivement conseillé pour les enfants.</p>
+            <p>Tout à fait : l'itinéraire de 6 km privilégie des tronçons sécurisés, généralement séparés du trafic motorisé (voies apaisées et pistes cyclables). Notre équipe de <strong>commissaires de course</strong> en chasuble sécurise l'avant, l'arrière et chaque carrefour. Le port du casque est vivement conseillé pour les enfants.</p>
           </details>
 
           <details class="item-faq">
@@ -796,7 +829,7 @@
 
           <details class="item-faq">
             <summary>Peut-on venir à trottinette, en draisienne ou avec un vélo spécial ?</summary>
-            <p>Bien sûr ! Draisiennes, trottinettes, tandems, vélos cargos, remorques, vélos couchés ou cuistax sont tous les bienvenus dans le cortège (en gardant en tête le rythme d'environ 10 km/h pour la balade).</p>
+            <p>Bien sûr ! Draisiennes, trottinettes, tandems, vélos cargos, remorques, vélos couchés ou cuistax sont tous les bienvenus dans le cortège (en gardant en tête le rythme d'environ 10 km/h pour la balade, et en prévoyant de quoi transporter vos tout-petits s'ils ne tiennent pas la distance).</p>
           </details>
         </div>
       </div>
@@ -999,7 +1032,7 @@
         `DTEND;TZID=Europe/Brussels:${y}${m}${d}T160000`,
         "SUMMARY:Kidical Mass Liège 🚲",
         "LOCATION:Place Xavier Neujean, 4000 Liège, Belgique",
-        "DESCRIPTION:Une ville où petits et grands enfants se déplacent à vélo !\\n13h00 : Défis bicycliques et Parcours d'Obstacles pour enfants\\n14h00 : Départ de la Kidical Mass (boucle de 6 km à travers la ville)\\n16h00 max : Arrivée de la balade et un petit verre si ça vous dit !",
+        "DESCRIPTION:Une ville où petits et grands enfants se déplacent à vélo !\\n13h00 : Rendez-vous sur place (défis bicycliques & Parcours d'Obstacles pour enfants)\\n14h00 : Départ de la Kidical Mass (boucle de 6 km, arrêt freestyle esplanade Saint-Léo ou B3)\\n16h00 max : Arrivée Place Xavier Neujean et un petit verre si ça vous dit !",
         "END:VEVENT"
       ].join("\r\n");
     }
