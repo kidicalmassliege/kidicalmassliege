@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
 
   <style>
     :root {
@@ -44,7 +45,7 @@
       font-size: clamp(1.05rem, 2.2vw, 1.18rem);
     }
 
-    h1, h2, h3, .police-titre, .bouton-rouge, summary {
+    h1, h2, h3, .police-titre, .bouton-rouge, .bouton-bleu, summary {
       font-family: 'Comic Neue', cursive, sans-serif;
       font-weight: 700;
     }
@@ -61,7 +62,6 @@
       padding: 42px 16px 50px 16px;
       border-bottom-left-radius: 50% 26px;
       border-bottom-right-radius: 50% 26px;
-      box-shadow: 0 6px 18px rgba(11, 127, 163, 0.25);
     }
 
     .conteneur-logo {
@@ -96,7 +96,7 @@
     }
 
     .nav-contenu {
-      max-width: 900px;
+      max-width: 940px;
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
@@ -108,7 +108,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .nav-liens a {
@@ -116,8 +116,8 @@
       text-decoration: none;
       color: var(--texte);
       font-weight: 700;
-      font-size: 1.05rem;
-      padding: 5px 12px;
+      font-size: 1.03rem;
+      padding: 5px 10px;
       border-radius: 14px;
       transition: color 0.15s ease, background-color 0.15s ease, transform 0.2s var(--rebond);
     }
@@ -161,7 +161,7 @@
       margin: 0 0 18px 0;
     }
 
-    /* --- 1. HERO / PROCHAINE DATE (STYLE BADGE + TIMELINE) --- */
+    /* --- 1. HERO / PROCHAINE DATE (TIMELINE) --- */
     .hero {
       padding-top: 28px;
     }
@@ -175,12 +175,11 @@
 
     .carte-prochaine {
       background-color: var(--fond-rose);
-      border: 3px solid var(--rouge);
+      border: 3px dashed var(--rouge);
       border-radius: 24px;
       padding: 24px 20px;
       max-width: 580px;
       margin: 0 auto;
-      box-shadow: 6px 6px 0px var(--rouge);
       position: relative;
     }
 
@@ -225,7 +224,7 @@
       margin-bottom: 18px;
     }
 
-    /* Timeline 13h / 14h */
+    /* Timeline 13h / 14h / 16h */
     .timeline {
       text-align: left;
       max-width: 440px;
@@ -275,7 +274,6 @@
       border: 2.5px dashed var(--rouge);
       border-radius: 22px;
       padding: 22px 24px;
-      box-shadow: 5px 5px 0px rgba(231, 55, 67, 0.25);
     }
 
     .infos-pratiques p {
@@ -298,10 +296,9 @@
 
     .item-faq {
       background-color: #ffffff;
-      border: 2.5px solid var(--bleu);
+      border: 2.5px dashed var(--bleu);
       border-radius: 18px;
       padding: 14px 20px;
-      box-shadow: 4px 4px 0px rgba(11, 127, 163, 0.25);
       transition: transform 0.2s var(--rebond);
     }
 
@@ -346,10 +343,9 @@
       max-width: 720px;
       margin: 0 auto;
       overflow: hidden;
-      border: 3px solid var(--rouge);
+      border: 3px dashed var(--rouge);
       border-radius: 24px;
       background-color: var(--fond-rose);
-      box-shadow: 6px 6px 0px var(--rouge);
     }
 
     .carrousel-piste {
@@ -408,7 +404,6 @@
       background-color: rgba(255, 255, 255, 0.9);
       padding: 6px 14px;
       border-radius: 20px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
     .point {
@@ -445,7 +440,6 @@
       border: 2.5px dashed var(--rouge);
       border-radius: 18px;
       background-color: var(--fond-rose);
-      box-shadow: 4px 4px 0px rgba(231, 55, 67, 0.2);
     }
 
     .texte-date {
@@ -465,20 +459,34 @@
       text-decoration: none;
       border-radius: 25px;
       cursor: pointer;
-      border: 2px solid var(--rouge-fonce);
-      box-shadow: 3px 3px 0px var(--rouge-fonce);
-      transition: transform 0.2s var(--rebond), background-color 0.15s ease, box-shadow 0.15s ease;
+      border: none;
+      transition: transform 0.2s var(--rebond), background-color 0.15s ease;
     }
 
     .bouton-rouge:hover {
       background-color: var(--rouge-fonce);
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 5px 5px 0px rgba(11, 127, 163, 0.45);
+      transform: scale(1.04);
     }
 
-    .bouton-rouge:active {
-      transform: translateY(1px);
-      box-shadow: 1px 1px 0px var(--rouge-fonce);
+    .bouton-bleu {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--bleu);
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 25px;
+      cursor: pointer;
+      border: none;
+      padding: 8px 20px;
+      font-size: 1.05rem;
+      transition: transform 0.2s var(--rebond), background-color 0.15s ease;
+    }
+
+    .bouton-bleu:hover {
+      background-color: var(--bleu-fonce);
+      transform: scale(1.04);
     }
 
     .bouton-ical {
@@ -503,10 +511,9 @@
 
     .carte-info {
       background-color: #ffffff;
-      border: 2.5px solid var(--bleu);
+      border: 2.5px dashed var(--bleu);
       border-radius: 20px;
       padding: 20px 22px;
-      box-shadow: 5px 5px 0px var(--bleu);
     }
 
     .carte-info h3 {
@@ -525,11 +532,10 @@
       max-width: 720px;
       margin: 0 auto;
       background-color: var(--fond-rose);
-      border: 3px dashed var(--rouge);
+      border: 2.5px dashed var(--rouge);
       border-radius: 22px;
       padding: 24px 26px;
       text-align: left;
-      box-shadow: 5px 5px 0px rgba(231, 55, 67, 0.25);
     }
 
     .bloc-benevoles p.intro-benevoles {
@@ -553,6 +559,105 @@
     .cta-benevoles {
       text-align: center;
       margin-top: 16px;
+    }
+
+    /* --- 6b. SOUTENIR / DONS SEPA QR CODE --- */
+    .carte-don {
+      max-width: 680px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border: 2.5px dashed var(--bleu);
+      border-radius: 24px;
+      padding: 24px 22px;
+    }
+
+    .grille-don {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 16px;
+    }
+
+    .boite-qr {
+      background-color: #ffffff;
+      border: 2.5px dashed var(--rouge);
+      border-radius: 18px;
+      padding: 14px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #qr-sepa {
+      width: 170px;
+      height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #qr-sepa img, #qr-sepa canvas {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .legende-qr {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--rouge);
+    }
+
+    .details-don {
+      flex: 1;
+      min-width: 250px;
+      text-align: left;
+    }
+
+    .selecteur-montants {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0 14px 0;
+    }
+
+    .btn-montant {
+      font-family: 'Comic Neue', cursive, sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 5px 14px;
+      border-radius: 16px;
+      border: 2px solid var(--bleu);
+      background-color: var(--fond-bleu);
+      color: var(--bleu);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-montant.actif, .btn-montant:hover {
+      background-color: var(--bleu);
+      color: #ffffff;
+    }
+
+    .ligne-virement {
+      background-color: var(--fond-bleu);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .iban-texte {
+      font-family: monospace;
+      font-size: 1.12rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--texte);
+      display: block;
+      margin: 4px 0 8px 0;
     }
 
     /* --- 7. FACEBOOK & PIED DE PAGE --- */
@@ -605,6 +710,7 @@
         <a href="#dates">Prochaines dates</a>
         <a href="#mouvement">Le mouvement</a>
         <a href="#benevoles">Bénévoles</a>
+        <a href="#soutenir">Soutenir</a>
         <a href="#facebook">Contact</a>
       </div>
     </div>
@@ -638,6 +744,10 @@
             <div class="etape-timeline">
               <div><span class="heure-pill">14h00</span> <strong>Départ de la Kidical Mass</strong></div>
               <div>Boucle de 6 km à travers la ville</div>
+            </div>
+            <div class="etape-timeline">
+              <div><span class="heure-pill">16h00 max</span> <strong>Arrivée de la balade</strong></div>
+              <div>Et un petit verre si ça vous dit ! 🍻🥤</div>
             </div>
           </div>
         </div>
@@ -768,8 +878,47 @@
       </div>
     </section>
 
+    <!-- 6b. SOUTENIR / DON PAR VIREMENT SEPA & QR CODE -->
+    <section class="bande-bleue" id="soutenir">
+      <div class="conteneur-interne">
+        <h2 class="titre-section gras-bleu">Soutenir la Kidical Mass 💛</h2>
+        <p style="max-width: 640px; margin: 0 auto 20px auto;">
+          La Kidical Mass est 100 % gratuite et portée par des bénévoles. Vos dons nous aident à imprimer des affiches, acheter des chasubles et animer le parcours d'obstacles pour les enfants !
+        </p>
+
+        <div class="carte-don">
+          <div class="grille-don">
+            <div class="boite-qr">
+              <div id="qr-sepa" title="Scannez avec votre application bancaire"></div>
+              <span class="legende-qr">📱 À scanner avec votre app bancaire</span>
+            </div>
+
+            <div class="details-don">
+              <div style="font-weight: 700; color: var(--bleu);">Montant suggéré pour le QR code :</div>
+              <div class="selecteur-montants">
+                <button type="button" class="btn-montant" onclick="changerMontantQR(10, this)">10 €</button>
+                <button type="button" class="btn-montant actif" onclick="changerMontantQR(20, this)">20 €</button>
+                <button type="button" class="btn-montant" onclick="changerMontantQR(50, this)">50 €</button>
+                <button type="button" class="btn-montant" onclick="changerMontantQR(0, this)">Libre</button>
+              </div>
+
+              <div class="ligne-virement">
+                <div><strong>Titulaire :</strong> l’Amorce</div>
+                <div><strong>Communication :</strong> kidical mass liege</div>
+                <div style="margin-top: 6px;"><strong>IBAN :</strong></div>
+                <span class="iban-texte" id="texte-iban">BE64 5230 8141 9552</span>
+                <button type="button" class="bouton-bleu" id="btn-copier-iban" onclick="copierIban()">
+                  📋 Copier l'IBAN
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 7. SUIVRE SUR FACEBOOK -->
-    <section class="bande-blanche" id="facebook" style="padding-top: 8px; padding-bottom: 54px;">
+    <section class="bande-blanche" id="facebook" style="padding-bottom: 54px;">
       <div class="conteneur-interne">
         <h2 class="titre-section gras-rouge">
           Suivez nos prochaines balades et actus ! 🚲
@@ -850,7 +999,7 @@
         `DTEND;TZID=Europe/Brussels:${y}${m}${d}T160000`,
         "SUMMARY:Kidical Mass Liège 🚲",
         "LOCATION:Place Xavier Neujean, 4000 Liège, Belgique",
-        "DESCRIPTION:Une ville où petits et grands enfants se déplacent à vélo !\\n13h00 : Défis bicycliques et Parcours d'Obstacles pour enfants\\n14h00 : Départ de la Kidical Mass (boucle de 6 km à travers la ville)",
+        "DESCRIPTION:Une ville où petits et grands enfants se déplacent à vélo !\\n13h00 : Défis bicycliques et Parcours d'Obstacles pour enfants\\n14h00 : Départ de la Kidical Mass (boucle de 6 km à travers la ville)\\n16h00 max : Arrivée de la balade et un petit verre si ça vous dit !",
         "END:VEVENT"
       ].join("\r\n");
     }
@@ -1001,6 +1150,55 @@
     }
 
     initialiserCarrouselGitHub();
+
+    // 4. Génération du QR Code SEPA (standard EPC) & copie IBAN
+    function genererQrSepa(montant) {
+      const conteneurQr = document.getElementById("qr-sepa");
+      if (!conteneurQr || typeof QRCode === "undefined") return;
+
+      conteneurQr.innerHTML = "";
+      const montantEpc = montant > 0 ? `EUR${Number(montant).toFixed(2)}` : "";
+
+      const payloadEpc = [
+        "BCD",
+        "002",
+        "1",
+        "SCT",
+        "",
+        "l'Amorce",
+        "BE64523081419552",
+        montantEpc,
+        "",
+        "",
+        "kidical mass liege"
+      ].join("\n");
+
+      new QRCode(conteneurQr, {
+        text: payloadEpc,
+        width: 170,
+        height: 170,
+        colorDark: "#085f7a",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    }
+
+    window.changerMontantQR = function(montant, boutonClique) {
+      document.querySelectorAll(".btn-montant").forEach(b => b.classList.remove("actif"));
+      boutonClique.classList.add("actif");
+      genererQrSepa(montant);
+    };
+
+    window.copierIban = function() {
+      const iban = "BE64 5230 8141 9552";
+      const btn = document.getElementById("btn-copier-iban");
+      navigator.clipboard.writeText(iban).then(() => {
+        btn.textContent = "✅ IBAN copié !";
+        setTimeout(() => { btn.textContent = "📋 Copier l'IBAN"; }, 2500);
+      });
+    };
+
+    window.addEventListener("load", () => genererQrSepa(20));
   </script>
 
 </body>
