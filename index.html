@@ -98,7 +98,7 @@
     }
 
     .nav-contenu {
-      max-width: 940px;
+      max-width: 960px;
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
@@ -304,7 +304,87 @@
       color: var(--bleu-fonce);
     }
 
-    /* --- 2. MINI FAQ --- */
+    /* --- 2. CARTE DES PARCOURS À LIÈGE --- */
+    .bloc-carte-parcours {
+      background-color: #ffffff;
+      border: 2.5px dashed var(--bleu);
+      border-radius: 22px;
+      padding: 22px 18px;
+    }
+
+    .legende-parcours {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 14px 0 16px 0;
+    }
+
+    .carte-legende-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 18px;
+      border: 2px solid var(--rouge);
+      background-color: var(--fond-rose);
+      color: var(--texte);
+      font-family: 'Comic Neue', cursive, sans-serif;
+      font-weight: 700;
+      font-size: 1.02rem;
+      cursor: pointer;
+      transition: transform 0.2s var(--rebond), box-shadow 0.15s ease;
+    }
+
+    .carte-legende-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .carte-legende-item.bleu {
+      border-color: var(--bleu);
+      background-color: var(--fond-bleu);
+    }
+
+    .carte-legende-item.tous {
+      border-color: #4b5563;
+      background-color: #f8fafc;
+      color: #1f2428;
+    }
+
+    .trait-couleur {
+      display: inline-block;
+      width: 24px;
+      height: 7px;
+      border-radius: 4px;
+      border: 1.5px solid #ffffff;
+      box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.2);
+      flex-shrink: 0;
+    }
+
+    #carte-parcours-liege {
+      width: 100%;
+      height: 410px;
+      border-radius: 16px;
+      border: 2px dashed rgba(11, 127, 163, 0.45);
+      background-color: #f8fafc;
+      z-index: 1;
+    }
+
+    .boutons-gpx {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .bouton-gpx {
+      font-size: 0.98rem;
+      padding: 7px 18px;
+    }
+
+    /* --- 3. MINI FAQ --- */
     .liste-faq {
       max-width: 720px;
       margin: 0 auto;
@@ -358,7 +438,7 @@
       border-top: 2px dashed rgba(11, 127, 163, 0.25);
     }
 
-    /* --- 3. CARROUSEL PHOTOS AUTOMATIQUE --- */
+    /* --- 4. CARROUSEL PHOTOS AUTOMATIQUE --- */
     .carrousel-conteneur {
       position: relative;
       max-width: 720px;
@@ -443,7 +523,7 @@
       transform: scale(1.3);
     }
 
-    /* --- 4. LISTE DES DATES & ICAL --- */
+    /* --- 5. LISTE DES DATES & ICAL --- */
     .liste-dates {
       list-style: none;
       padding: 0;
@@ -521,7 +601,7 @@
       font-size: clamp(1.15rem, 3vw, 1.3rem);
     }
 
-    /* --- 5. LE MOUVEMENT & CARTE DES KIDICAL MASS VOISINES --- */
+    /* --- 6. LE MOUVEMENT & CARTE DES KIDICAL MASS VOISINES --- */
     .grille-mouvement {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -622,11 +702,6 @@
       z-index: 1;
     }
 
-    /* Fond blanc/clair sans clé API via filtre sur les tuiles OSM */
-    .tuiles-claires {
-      filter: grayscale(90%) brightness(1.07) contrast(0.88);
-    }
-
     .pin-simple {
       width: 18px;
       height: 18px;
@@ -673,7 +748,7 @@
       font-size: 0.95rem;
     }
 
-    /* --- 6. BÉNÉVOLES (NOUS AVONS BESOIN DE VOUS) --- */
+    /* --- 7. BÉNÉVOLES (NOUS AVONS BESOIN DE VOUS) --- */
     .bloc-benevoles {
       max-width: 720px;
       margin: 0 auto;
@@ -705,7 +780,7 @@
       margin-top: 16px;
     }
 
-    /* --- 6b. SOUTENIR / DONS SEPA QR CODE --- */
+    /* --- 7b. SOUTENIR / DONS SEPA QR CODE --- */
     .carte-don {
       max-width: 680px;
       margin: 0 auto;
@@ -804,7 +879,7 @@
       margin: 4px 0 8px 0;
     }
 
-    /* --- 7. FACEBOOK & PIED DE PAGE --- */
+    /* --- 8. FACEBOOK & PIED DE PAGE --- */
     .bouton-fb {
       margin-top: 14px;
       padding: 12px 28px;
@@ -848,6 +923,7 @@
     <div class="nav-contenu">
       <div class="nav-liens">
         <a href="#accueil">Accueil</a>
+        <a href="#parcours">Nos parcours</a>
         <a href="#faq">FAQ</a>
         <a href="#galerie" id="nav-galerie" style="display: none;">Photos</a>
         <a href="#dates">Prochaines dates</a>
@@ -926,10 +1002,47 @@
       </div>
     </section>
 
-    <!-- 2. MINI FAQ (BANDE PLEINE LARGEUR BLEU DOUX) -->
-    <section class="bande-bleue" id="faq">
+    <!-- 2. NOUVELLE SECTION : NOS DEUX PARCOURS PRINCIPAUX À LIÈGE -->
+    <section class="bande-bleue" id="parcours">
       <div class="conteneur-interne">
-        <h2 class="titre-section gras-bleu">Questions fréquentes</h2>
+        <h2 class="titre-section gras-bleu">Nos parcours à Liège</h2>
+        <p style="max-width: 640px; margin: 0 auto 20px auto;">
+          Découvrez les deux boucles sécurisées d'environ <strong>6 km</strong> que nous empruntons au départ de la <strong>Place Xavier Neujean</strong> :
+        </p>
+
+        <div class="bloc-carte-parcours">
+          <div class="legende-parcours">
+            <button type="button" class="carte-legende-item" onclick="centrerParcours(0)">
+              <span class="trait-couleur" style="background-color: #e73743;"></span>
+              Parcours 1 : Boucle Outremeuse & B3
+            </button>
+            <button type="button" class="carte-legende-item bleu" onclick="centrerParcours(1)">
+              <span class="trait-couleur" style="background-color: #0b7fa3;"></span>
+              Parcours 2 : Boucle Quais & Centre
+            </button>
+            <button type="button" class="carte-legende-item tous" onclick="voirTousParcours()">
+              Voir les deux
+            </button>
+          </div>
+
+          <div id="carte-parcours-liege"></div>
+
+          <div class="boutons-gpx">
+            <button type="button" class="bouton-rouge bouton-gpx" onclick="telechargerGpxParcours(0)">
+              Télécharger GPX — Outremeuse & B3
+            </button>
+            <button type="button" class="bouton-bleu bouton-gpx" onclick="telechargerGpxParcours(1)">
+              Télécharger GPX — Quais & Centre
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. MINI FAQ -->
+    <section class="bande-blanche" id="faq">
+      <div class="conteneur-interne">
+        <h2 class="titre-section gras-rouge">Questions fréquentes</h2>
 
         <div class="liste-faq">
           <details class="item-faq">
@@ -960,7 +1073,7 @@
       </div>
     </section>
 
-    <!-- 3. CARROUSEL PHOTOS AUTOMATIQUE -->
+    <!-- 4. CARROUSEL PHOTOS AUTOMATIQUE -->
     <section class="bande-blanche" id="galerie" style="display: none;">
       <div class="conteneur-interne">
         <h2 class="titre-section gras-rouge">La Kidical Mass en images</h2>
@@ -976,10 +1089,10 @@
       </div>
     </section>
 
-    <!-- 4. LISTE DES PROCHAINES DATES & ICAL -->
-    <section class="bande-blanche" id="dates">
+    <!-- 5. LISTE DES PROCHAINES DATES & ICAL -->
+    <section class="bande-bleue" id="dates">
       <div class="conteneur-interne">
-        <h2 class="titre-section gras-rouge">
+        <h2 class="titre-section gras-bleu">
           Les prochaines Kidical Mass
         </h2>
 
@@ -988,10 +1101,10 @@
       </div>
     </section>
 
-    <!-- 5. LE MOUVEMENT & CARTE DES KIDICAL MASS VOISINES -->
-    <section class="bande-bleue" id="mouvement">
+    <!-- 6. LE MOUVEMENT & CARTE DES KIDICAL MASS VOISINES -->
+    <section class="bande-blanche" id="mouvement">
       <div class="conteneur-interne">
-        <h2 class="titre-section gras-bleu">La Kidical Mass, en bref</h2>
+        <h2 class="titre-section gras-rouge">La Kidical Mass, en bref</h2>
 
         <div class="grille-mouvement">
           <div class="carte-info">
@@ -1023,10 +1136,10 @@
       </div>
     </section>
 
-    <!-- 6. APPEL AUX BÉNÉVOLES -->
-    <section class="bande-blanche" id="benevoles">
+    <!-- 7. APPEL AUX BÉNÉVOLES -->
+    <section class="bande-bleue" id="benevoles">
       <div class="conteneur-interne">
-        <h2 class="titre-section gras-rouge">NOUS AVONS BESOIN DE VOUS !</h2>
+        <h2 class="titre-section gras-bleu">NOUS AVONS BESOIN DE VOUS !</h2>
 
         <div class="bloc-benevoles">
           <p class="intro-benevoles">La Kidical Mass de Liège a besoin de renfort :</p>
@@ -1047,10 +1160,10 @@
       </div>
     </section>
 
-    <!-- 6b. SOUTENIR / DON PAR VIREMENT SEPA & QR CODE -->
-    <section class="bande-bleue" id="soutenir">
+    <!-- 7b. SOUTENIR / DON PAR VIREMENT SEPA & QR CODE -->
+    <section class="bande-blanche" id="soutenir">
       <div class="conteneur-interne">
-        <h2 class="titre-section gras-bleu">Soutenir la Kidical Mass</h2>
+        <h2 class="titre-section gras-rouge">Soutenir la Kidical Mass</h2>
         <p style="max-width: 640px; margin: 0 auto 20px auto;">
           La Kidical Mass est 100 % gratuite et portée par des bénévoles. Vos dons nous aident à imprimer des affiches, acheter des chasubles et animer le parcours d'obstacles pour les enfants !
         </p>
@@ -1086,10 +1199,10 @@
       </div>
     </section>
 
-    <!-- 7. SUIVRE SUR FACEBOOK -->
-    <section class="bande-blanche" id="facebook" style="padding-bottom: 54px;">
+    <!-- 8. SUIVRE SUR FACEBOOK -->
+    <section class="bande-bleue" id="facebook" style="padding-bottom: 54px;">
       <div class="conteneur-interne">
-        <h2 class="titre-section gras-rouge">
+        <h2 class="titre-section gras-bleu">
           Suivez nos prochaines balades et actus !
         </h2>
 
@@ -1233,7 +1346,263 @@
       liste.innerHTML = "<li class='gras-rouge'>Les prochaines dates 2028 seront bientôt annoncées !</li>";
     }
 
-    // 3. Chargement automatique des photos depuis le dossier /photos sur GitHub
+    // 3. Carte des deux parcours principaux à Liège (Stamen Toner Lite + GPX rouge & bleu avec liseré blanc)
+    const parcoursLiegeData = [
+      {
+        nom: "Parcours 1 : Boucle Outremeuse & B3",
+        description: "Passage par le centre, Outremeuse et pause au B3.",
+        couleur: "#e73743",
+        fichier: "Kidical-Mass-Liege-Outremeuse-B3.gpx",
+        coords: [
+          [50.642717,5.567955],[50.642628,5.568078],[50.642835,5.568455],[50.642814,5.568483],[50.642488,5.568916],
+          [50.641738,5.569886],[50.640918,5.570744],[50.640969,5.570913],[50.641093,5.571256],[50.641200,5.571551],
+          [50.641172,5.571626],[50.641447,5.572293],[50.641459,5.572380],[50.641502,5.572425],[50.641829,5.573215],
+          [50.641969,5.573554],[50.642014,5.573509],[50.642043,5.573581],[50.641294,5.574376],[50.641072,5.574629],
+          [50.640861,5.574910],[50.640537,5.575230],[50.640327,5.575438],[50.640343,5.575497],[50.639936,5.575825],
+          [50.639615,5.576111],[50.639442,5.576263],[50.639377,5.576245],[50.639340,5.576158],[50.639177,5.576194],
+          [50.639050,5.576199],[50.638924,5.576152],[50.638461,5.575831],[50.638415,5.575859],[50.638381,5.575990],
+          [50.638334,5.575959],[50.638273,5.575917],[50.638218,5.575880],[50.638199,5.575949],[50.638180,5.576028],
+          [50.638158,5.576202],[50.638118,5.576349],[50.638076,5.576524],[50.638078,5.576787],[50.637953,5.577261],
+          [50.637850,5.577644],[50.637738,5.577714],[50.637681,5.577749],[50.636834,5.577178],[50.636694,5.577046],
+          [50.636703,5.577127],[50.636852,5.577264],[50.636949,5.577395],[50.636996,5.577432],[50.637483,5.577811],
+          [50.637603,5.577905],[50.637874,5.578101],[50.638244,5.578270],[50.638529,5.578330],[50.638524,5.578392],
+          [50.638614,5.578407],[50.639253,5.578537],[50.639361,5.578559],[50.640003,5.578699],[50.640125,5.578726],
+          [50.640086,5.578888],[50.639765,5.579347],[50.639511,5.579709],[50.639436,5.579815],[50.639214,5.580133],
+          [50.638819,5.580697],[50.638774,5.580758],[50.638609,5.581010],[50.638541,5.581261],[50.638534,5.581425],
+          [50.638478,5.581424],[50.638408,5.581472],[50.638352,5.581601],[50.638363,5.581783],[50.638455,5.581907],
+          [50.638540,5.581912],[50.638615,5.581847],[50.638701,5.582025],[50.638867,5.582320],[50.638985,5.582529],
+          [50.639026,5.582604],[50.639142,5.582810],[50.639392,5.583225],[50.639887,5.584115],[50.640141,5.584568],
+          [50.640334,5.584920],[50.640688,5.585543],[50.641083,5.586228],[50.641192,5.586424],[50.641750,5.587395],
+          [50.641919,5.587703],[50.641876,5.587808],[50.641882,5.587932],[50.641939,5.588026],[50.641980,5.588045],
+          [50.642078,5.587989],[50.642249,5.588289],[50.642413,5.588568],[50.642879,5.589350],[50.643107,5.588775],
+          [50.643174,5.588616],[50.643298,5.588739],[50.643735,5.589198],[50.643854,5.589135],[50.644141,5.588990],
+          [50.644210,5.588956],[50.644161,5.589210],[50.644236,5.589988],[50.644589,5.589802],[50.644720,5.589749],
+          [50.644741,5.589771],[50.644765,5.589716],[50.644824,5.589676],[50.645158,5.589526],[50.645481,5.589380],
+          [50.645632,5.589311],[50.645722,5.589266],[50.645825,5.589219],[50.646198,5.589065],[50.646248,5.589045],
+          [50.646052,5.588006],[50.645976,5.587578],[50.645692,5.586050],[50.645759,5.586017],[50.646761,5.585572],
+          [50.646982,5.585472],[50.647122,5.585410],[50.647561,5.585211],[50.647617,5.585183],[50.647731,5.585197],
+          [50.647814,5.585258],[50.647710,5.585403],[50.647766,5.585655],[50.647799,5.585803],[50.647885,5.585769],
+          [50.647911,5.585831],[50.647956,5.585859],[50.648058,5.586113],[50.648280,5.587155],[50.648418,5.587764],
+          [50.648632,5.588661],[50.648905,5.589670],[50.649039,5.590263],[50.649120,5.590754],[50.649954,5.590133],
+          [50.651034,5.589327],[50.650793,5.588209],[50.650745,5.587960],[50.650471,5.586889],[50.650331,5.586342],
+          [50.650047,5.585210],[50.649876,5.584538],[50.649834,5.584379],[50.649782,5.584185],[50.649341,5.584595],
+          [50.648928,5.584971],[50.648859,5.584768],[50.648630,5.584092],[50.648422,5.583375],[50.648346,5.583155],
+          [50.648152,5.582405],[50.648160,5.582306],[50.648166,5.582177],[50.648153,5.582146],[50.648084,5.581912],
+          [50.647818,5.581116],[50.647602,5.580384],[50.647567,5.580266],[50.647517,5.580094],[50.647483,5.579978],
+          [50.647471,5.579937],[50.647313,5.579320],[50.647223,5.578966],[50.647090,5.578373],[50.646995,5.577969],
+          [50.646801,5.577224],[50.646782,5.577164],[50.646742,5.577013],[50.646521,5.576289],[50.646558,5.576157],
+          [50.646556,5.576077],[50.646517,5.575790],[50.646517,5.575297],[50.646527,5.574755],[50.646563,5.574285],
+          [50.646575,5.574084],[50.646583,5.572818],[50.646582,5.572775],[50.646319,5.572057],[50.646340,5.571512],
+          [50.646331,5.571409],[50.646259,5.571302],[50.646199,5.571277],[50.646113,5.571312],[50.646056,5.571416],
+          [50.646055,5.571598],[50.646047,5.572002],[50.645954,5.572260],[50.645870,5.572331],[50.645739,5.572442],
+          [50.645677,5.572492],[50.645614,5.572473],[50.645557,5.572520],[50.645466,5.572491],[50.645289,5.572453],
+          [50.645143,5.572470],[50.644649,5.572667],[50.644563,5.572632],[50.644492,5.572498],[50.644018,5.571579],
+          [50.643969,5.571449],[50.643925,5.571166],[50.643947,5.570810],[50.643995,5.570726],[50.643996,5.570686],
+          [50.644025,5.570490],[50.644138,5.569725],[50.644219,5.569166],[50.644241,5.568542],[50.644232,5.568363],
+          [50.644176,5.567808],[50.644082,5.567294],[50.643942,5.566852],[50.643722,5.566396],[50.643482,5.566041],
+          [50.643273,5.565833],[50.643043,5.565664],[50.642747,5.565586],[50.642500,5.565667],[50.642291,5.565887],
+          [50.642248,5.565941],[50.642218,5.565979],[50.642131,5.566092],[50.641542,5.566850],[50.641435,5.566987],
+          [50.641551,5.567204],[50.641657,5.567068],[50.641713,5.567189],[50.641935,5.567685],[50.642052,5.567946],
+          [50.642303,5.568506],[50.642610,5.568102],[50.642628,5.568078],[50.642717,5.567955]
+        ]
+      },
+      {
+        nom: "Parcours 2 : Boucle Quais & Centre",
+        description: "Descente vers Avroy, les quais de Meuse et retour par l'hypercentre.",
+        couleur: "#0b7fa3",
+        fichier: "Kidical-Mass-Liege-Quais-Centre.gpx",
+        coords: [
+          [50.642884,5.568390],[50.642843,5.568444],[50.642835,5.568455],[50.642814,5.568483],[50.642488,5.568916],
+          [50.641738,5.569886],[50.640918,5.570744],[50.640969,5.570913],[50.641093,5.571256],[50.641200,5.571551],
+          [50.641172,5.571626],[50.641447,5.572293],[50.641459,5.572380],[50.641502,5.572425],[50.641747,5.573017],
+          [50.641969,5.573554],[50.642014,5.573509],[50.642043,5.573581],[50.641294,5.574376],[50.641072,5.574629],
+          [50.640861,5.574910],[50.640537,5.575230],[50.640327,5.575438],[50.640343,5.575497],[50.639936,5.575825],
+          [50.639615,5.576111],[50.639471,5.576262],[50.639407,5.576349],[50.639340,5.576158],[50.639288,5.576007],
+          [50.638982,5.575023],[50.638891,5.574677],[50.638822,5.574596],[50.638798,5.574569],[50.638769,5.574542],
+          [50.638714,5.574452],[50.638723,5.574192],[50.638774,5.574077],[50.638775,5.573980],[50.638765,5.573933],
+          [50.638752,5.573901],[50.638680,5.573827],[50.638619,5.573827],[50.638546,5.573902],[50.638520,5.574021],
+          [50.638540,5.574132],[50.638587,5.574201],[50.638625,5.574332],[50.638638,5.574448],[50.638612,5.574610],
+          [50.638541,5.574979],[50.638531,5.575059],[50.638432,5.575427],[50.638361,5.575566],[50.638301,5.575615],
+          [50.638218,5.575880],[50.638199,5.575949],[50.638180,5.576028],[50.638158,5.576202],[50.638118,5.576349],
+          [50.638076,5.576524],[50.638078,5.576787],[50.637953,5.577261],[50.637850,5.577644],[50.637738,5.577714],
+          [50.637681,5.577749],[50.637264,5.577468],[50.636834,5.577178],[50.636694,5.577046],[50.636703,5.577127],
+          [50.636852,5.577264],[50.636949,5.577395],[50.637302,5.577670],[50.637603,5.577905],[50.637874,5.578101],
+          [50.638244,5.578270],[50.638529,5.578330],[50.638595,5.578300],[50.638672,5.578252],[50.638786,5.578367],
+          [50.638861,5.578395],[50.639046,5.578396],[50.639248,5.578337],[50.640017,5.578523],[50.640207,5.578571],
+          [50.640325,5.578599],[50.640745,5.578700],[50.640900,5.578737],[50.640886,5.578889],[50.640963,5.578962],
+          [50.640998,5.579184],[50.641012,5.579277],[50.641139,5.580218],[50.641154,5.580325],[50.641159,5.580366],
+          [50.641243,5.580982],[50.641285,5.581286],[50.641300,5.581329],[50.641354,5.581351],[50.641386,5.581612],
+          [50.641314,5.581695],[50.641287,5.581837],[50.641341,5.582001],[50.641444,5.582048],[50.641460,5.582148],
+          [50.641476,5.582241],[50.641438,5.582287],[50.641426,5.582356],[50.641586,5.583445],[50.641644,5.583838],
+          [50.641683,5.583873],[50.641714,5.583872],[50.641734,5.583859],[50.641755,5.583831],[50.641787,5.583879],
+          [50.641824,5.583932],[50.641809,5.583974],[50.641805,5.584021],[50.641812,5.584066],[50.641829,5.584105],
+          [50.641891,5.584143],[50.641964,5.584054],[50.641957,5.583950],[50.641925,5.583900],[50.642492,5.582146],
+          [50.642544,5.581981],[50.642589,5.581853],[50.642658,5.581647],[50.642728,5.581422],[50.643039,5.580436],
+          [50.643211,5.579885],[50.643234,5.579816],[50.643265,5.579728],[50.643303,5.579641],[50.643317,5.579597],
+          [50.643595,5.578711],[50.643809,5.578033],[50.643817,5.578005],[50.643829,5.577973],[50.644036,5.577357],
+          [50.644079,5.577226],[50.644174,5.576929],[50.644283,5.576593],[50.644385,5.576278],[50.644502,5.575914],
+          [50.644548,5.575774],[50.644701,5.575300],[50.644855,5.574820],[50.644956,5.574513],[50.645064,5.574393],
+          [50.645089,5.574372],[50.645108,5.574356],[50.645185,5.574293],[50.645221,5.574270],[50.645459,5.574116],
+          [50.645567,5.573995],[50.645617,5.573852],[50.645649,5.573638],[50.645677,5.573703],[50.645649,5.573638],
+          [50.645661,5.573320],[50.645646,5.572879],[50.645638,5.572773],[50.645697,5.572731],[50.645725,5.572616],
+          [50.645677,5.572492],[50.645614,5.572473],[50.645557,5.572520],[50.645466,5.572491],[50.645289,5.572453],
+          [50.645143,5.572470],[50.644649,5.572667],[50.644563,5.572632],[50.644492,5.572498],[50.644144,5.571824],
+          [50.644018,5.571579],[50.643969,5.571449],[50.643925,5.571166],[50.643947,5.570810],[50.643995,5.570726],
+          [50.643996,5.570686],[50.644025,5.570490],[50.644138,5.569725],[50.644219,5.569166],[50.644241,5.568542],
+          [50.644232,5.568363],[50.644176,5.567808],[50.644082,5.567294],[50.643942,5.566852],[50.643722,5.566396],
+          [50.643482,5.566041],[50.643273,5.565833],[50.643043,5.565664],[50.642747,5.565586],[50.642500,5.565667],
+          [50.642291,5.565887],[50.642218,5.565979],[50.642131,5.566092],[50.641542,5.566850],[50.641435,5.566987],
+          [50.641378,5.567061],[50.640710,5.567921],[50.640529,5.568154],[50.640389,5.568337],[50.640258,5.568494],
+          [50.640152,5.568561],[50.640081,5.568591],[50.640029,5.568595],[50.640052,5.568711],[50.639560,5.568718],
+          [50.639329,5.568662],[50.639024,5.568581],[50.638505,5.568319],[50.638415,5.568147],[50.638281,5.568052],
+          [50.638173,5.567975],[50.638021,5.567871],[50.637714,5.567731],[50.637349,5.567651],[50.637243,5.567651],
+          [50.637225,5.567677],[50.636673,5.567759],[50.636211,5.567871],[50.635980,5.567900],[50.635802,5.567886],
+          [50.635595,5.567836],[50.635577,5.567832],[50.635443,5.567806],[50.634946,5.567706],[50.634815,5.567684],
+          [50.634703,5.567662],[50.633745,5.567489],[50.633087,5.567514],[50.633055,5.567515],[50.632743,5.567565],
+          [50.632746,5.567639],[50.632126,5.567761],[50.631807,5.567860],[50.631401,5.568092],[50.631263,5.568171],
+          [50.631131,5.568285],[50.631093,5.568353],[50.630753,5.568559],[50.630640,5.568638],[50.630618,5.568567],
+          [50.630494,5.568578],[50.630375,5.568588],[50.630426,5.568810],[50.630317,5.568947],[50.630207,5.569102],
+          [50.630009,5.569363],[50.629717,5.569746],[50.629680,5.569795],[50.629639,5.569850],[50.629417,5.570148],
+          [50.628966,5.570755],[50.628892,5.570867],[50.628846,5.570939],[50.628969,5.571224],[50.629030,5.571364],
+          [50.629095,5.571510],[50.629122,5.571604],[50.629171,5.571845],[50.629297,5.571784],[50.629586,5.571676],
+          [50.630149,5.571466],[50.630537,5.571366],[50.630609,5.571351],[50.630700,5.571335],[50.630858,5.571308],
+          [50.630932,5.571297],[50.631435,5.571246],[50.631837,5.571230],[50.632539,5.571335],[50.632824,5.571405],
+          [50.633018,5.571471],[50.633328,5.571577],[50.634162,5.571972],[50.634593,5.572209],[50.634732,5.572295],
+          [50.634832,5.572356],[50.635149,5.572568],[50.635766,5.572978],[50.635734,5.573095],[50.635934,5.573249],
+          [50.636181,5.573530],[50.636316,5.573750],[50.636442,5.574021],[50.636492,5.574162],[50.636575,5.574397],
+          [50.636772,5.574806],[50.637032,5.575100],[50.637206,5.575290],[50.637433,5.575418],[50.637472,5.575333],
+          [50.637486,5.575297],[50.637533,5.575204],[50.637439,5.575007],[50.637438,5.574983],[50.637500,5.574740],
+          [50.637609,5.574527],[50.637662,5.574440],[50.637783,5.574345],[50.638198,5.574101],[50.638401,5.574064],
+          [50.638451,5.574074],[50.638540,5.574132],[50.638587,5.574201],[50.638654,5.574227],[50.638723,5.574192],
+          [50.638774,5.574077],[50.638775,5.573980],[50.638765,5.573933],[50.638756,5.573654],[50.638747,5.573470],
+          [50.638703,5.573272],[50.638683,5.573217],[50.638190,5.571885],[50.638125,5.571709],[50.638023,5.571276],
+          [50.638013,5.570825],[50.638092,5.570318],[50.638180,5.569938],[50.638197,5.569834],[50.638231,5.569615],
+          [50.638235,5.569580],[50.638255,5.569416],[50.638336,5.568735],[50.638438,5.568757],[50.638993,5.568879],
+          [50.639094,5.568901],[50.639510,5.568993],[50.639606,5.569009],[50.639856,5.569050],[50.640006,5.569030],
+          [50.640061,5.569002],[50.640135,5.568956],[50.640207,5.568909],[50.640259,5.568852],[50.640823,5.568138],
+          [50.640853,5.568100],[50.641494,5.567276],[50.641551,5.567204],[50.641657,5.567068],[50.641713,5.567189],
+          [50.642052,5.567946],[50.642303,5.568506],[50.642610,5.568102],[50.642628,5.568078],[50.642835,5.568455],
+          [50.642843,5.568444],[50.642884,5.568390]
+        ]
+      }
+    ];
+
+    let carteParcoursObj = null;
+    let groupesParcours = [];
+
+    function initialiserCarteParcoursLiege() {
+      const conteneur = document.getElementById("carte-parcours-liege");
+      if (!conteneur || typeof L === "undefined") return;
+
+      carteParcoursObj = L.map("carte-parcours-liege", { scrollWheelZoom: false }).setView([50.6405, 5.5780], 14);
+
+      L.tileLayer("https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png", {
+        minZoom: 0,
+        maxZoom: 20,
+        attribution: '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
+      }).addTo(carteParcoursObj);
+
+      parcoursLiegeData.forEach((p, idx) => {
+        // Liseré blanc extérieur
+        const lisereBlanc = L.polyline(p.coords, {
+          color: "#ffffff",
+          weight: 9,
+          opacity: 0.95,
+          lineJoin: "round",
+          lineCap: "round"
+        }).addTo(carteParcoursObj);
+
+        // Tracé coloré principal (rouge ou bleu)
+        const traceColore = L.polyline(p.coords, {
+          color: p.couleur,
+          weight: 5,
+          opacity: 0.95,
+          lineJoin: "round",
+          lineCap: "round"
+        }).addTo(carteParcoursObj);
+
+        const popupHtml = `
+          <div>
+            <div class="popup-titre" style="color:${p.couleur};">${p.nom}</div>
+            <div style="font-size:0.95rem;">${p.description}</div>
+          </div>
+        `;
+        traceColore.bindPopup(popupHtml);
+        lisereBlanc.bindPopup(popupHtml);
+
+        const groupe = L.featureGroup([lisereBlanc, traceColore]);
+        groupesParcours.push(groupe);
+      });
+
+      // Marqueur Départ / Arrivée Place Xavier Neujean
+      const iconeDepart = L.divIcon({
+        className: "",
+        html: `<div class="pin-simple liege" style="background-color:#1f2428;"></div>`,
+        iconSize: [22, 22],
+        iconAnchor: [11, 11],
+        popupAnchor: [0, -11]
+      });
+
+      L.marker([50.64275, 5.56815], { icon: iconeDepart })
+        .addTo(carteParcoursObj)
+        .bindPopup(`
+          <div>
+            <div class="popup-titre" style="color:#e73743;">Place Xavier Neujean</div>
+            <div style="font-size:0.95rem;">Départ (14h00) et arrivée (16h00 max) des deux parcours !</div>
+          </div>
+        `);
+
+      voirTousParcours();
+    }
+
+    window.centrerParcours = function(index) {
+      if (!carteParcoursObj || !groupesParcours[index]) return;
+      groupesParcours.forEach((g, i) => {
+        if (i === index) {
+          g.addTo(carteParcoursObj);
+        } else {
+          carteParcoursObj.removeLayer(g);
+        }
+      });
+      carteParcoursObj.fitBounds(groupesParcours[index].getBounds().pad(0.12));
+    };
+
+    window.voirTousParcours = function() {
+      if (!carteParcoursObj || groupesParcours.length === 0) return;
+      groupesParcours.forEach(g => g.addTo(carteParcoursObj));
+      const tout = L.featureGroup(groupesParcours);
+      carteParcoursObj.fitBounds(tout.getBounds().pad(0.12));
+    };
+
+    window.telechargerGpxParcours = function(index) {
+      const p = parcoursLiegeData[index];
+      if (!p) return;
+
+      const trkpts = p.coords.map(([lat, lon]) => `      <trkpt lat="${lat.toFixed(6)}" lon="${lon.toFixed(6)}"></trkpt>`).join("\n");
+      const contenuGpx = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<gpx version="1.1" creator="Kidical Mass Liege" xmlns="http://www.topografix.com/GPX/1/1">',
+        "  <trk>",
+        `    <name>${p.nom}</name>`,
+        "    <trkseg>",
+        trkpts,
+        "    </trkseg>",
+        "  </trk>",
+        "</gpx>"
+      ].join("\n");
+
+      const blob = new Blob([contenuGpx], { type: "application/gpx+xml;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const lien = document.createElement("a");
+      lien.href = url;
+      lien.download = p.fichier;
+      document.body.appendChild(lien);
+      lien.click();
+      document.body.removeChild(lien);
+      URL.revokeObjectURL(url);
+    };
+
+    // 4. Chargement automatique des photos depuis le dossier /photos sur GitHub
     const utilisateurGitHub = "kidicalmassliege";
     const depotGitHub = "kidicalmassliege";
     const dossierPhotos = "photos";
@@ -1320,7 +1689,7 @@
 
     initialiserCarrouselGitHub();
 
-    // 4. Carte interactive des Kidical Mass voisines (OpenStreetMap sans clé API + filtre blanc)
+    // 5. Carte interactive des Kidical Mass voisines (Stadia Maps - Stamen Toner Lite)
     const lieuxKidical = [
       {
         nom: "Kidical Mass Liège",
@@ -1376,10 +1745,10 @@
 
       const carte = L.map("carte-kidical", { scrollWheelZoom: false }).setView([50.70, 5.45], 8);
 
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        className: "tuiles-claires",
-        maxZoom: 19
+      L.tileLayer("https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png", {
+        minZoom: 0,
+        maxZoom: 20,
+        attribution: '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
       }).addTo(carte);
 
       const marqueurs = [];
@@ -1426,7 +1795,7 @@
       carte.fitBounds(groupe.getBounds().pad(0.18));
     }
 
-    // 5. Génération du QR Code SEPA (standard EPC) & copie IBAN
+    // 6. Génération du QR Code SEPA (standard EPC) & copie IBAN
     function genererQrSepa(montant) {
       const conteneurQr = document.getElementById("qr-sepa");
       if (!conteneurQr || typeof QRCode === "undefined") return;
@@ -1475,9 +1844,11 @@
 
     window.addEventListener("load", () => {
       genererQrSepa(20);
+      initialiserCarteParcoursLiege();
       initialiserCarteVoisines();
     });
   </script>
 
 </body>
 </html>
+```[cite: 2, 3]
