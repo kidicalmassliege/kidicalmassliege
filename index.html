@@ -365,7 +365,7 @@
 
     #carte-parcours-liege {
       width: 100%;
-      height: 410px;
+      height: 460px;
       border-radius: 16px;
       border: 2px dashed rgba(11, 127, 163, 0.45);
       background-color: #f8fafc;
@@ -1503,7 +1503,7 @@
         attribution: '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
       }).addTo(carteParcoursObj);
 
-      parcoursLiegeData.forEach((p, idx) => {
+      parcoursLiegeData.forEach((p) => {
         // Liseré blanc extérieur
         const lisereBlanc = L.polyline(p.coords, {
           color: "#ffffff",
@@ -1565,14 +1565,14 @@
           carteParcoursObj.removeLayer(g);
         }
       });
-      carteParcoursObj.fitBounds(groupesParcours[index].getBounds().pad(0.12));
+      carteParcoursObj.fitBounds(groupesParcours[index].getBounds().pad(0.02));
     };
 
     window.voirTousParcours = function() {
       if (!carteParcoursObj || groupesParcours.length === 0) return;
       groupesParcours.forEach(g => g.addTo(carteParcoursObj));
       const tout = L.featureGroup(groupesParcours);
-      carteParcoursObj.fitBounds(tout.getBounds().pad(0.12));
+      carteParcoursObj.fitBounds(tout.getBounds().pad(0.02));
     };
 
     window.telechargerGpxParcours = function(index) {
@@ -1744,7 +1744,7 @@
       const conteneurPills = document.getElementById("liste-pills-villes");
       if (!conteneurCarte || typeof L === "undefined") return;
 
-      const carte = L.map("carte-kidical", { scrollWheelZoom: false }).setView([50.70, 5.45], 8);
+      const carte = L.map("carte-kidical", { scrollWheelZoom: false }).setView([50.70, 5.45], 9);
 
       L.tileLayer("https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png", {
         minZoom: 0,
@@ -1786,14 +1786,14 @@
         pill.className = "pill-ville" + (lieu.estLiege ? " liege" : "");
         pill.textContent = lieu.nom.replace("Kidical Mass ", "");
         pill.onclick = () => {
-          carte.flyTo(lieu.coords, 10, { duration: 0.7 });
+          carte.flyTo(lieu.coords, 11, { duration: 0.7 });
           marqueur.openPopup();
         };
         conteneurPills.appendChild(pill);
       });
 
       const groupe = L.featureGroup(marqueurs);
-      carte.fitBounds(groupe.getBounds().pad(0.18));
+      carte.fitBounds(groupe.getBounds().pad(0.05));
     }
 
     // 6. Génération du QR Code SEPA (standard EPC) & copie IBAN
@@ -1852,4 +1852,3 @@
 
 </body>
 </html>
-```[cite: 2, 3]
