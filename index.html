@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
 
   <style>
@@ -88,7 +90,7 @@
     nav {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
       background-color: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(8px);
       border-bottom: 2px dashed rgba(231, 55, 67, 0.35);
@@ -235,7 +237,6 @@
       border: 1.5px dashed rgba(231, 55, 67, 0.35);
     }
 
-    /* Timeline : jalons horaires fixes + activités dans les intervalles */
     .timeline {
       text-align: left;
       max-width: 470px;
@@ -519,7 +520,7 @@
       font-size: clamp(1.15rem, 3vw, 1.3rem);
     }
 
-    /* --- 5. LE MOUVEMENT (C'EST QUOI / POUR QUI / POURQUOI) --- */
+    /* --- 5. LE MOUVEMENT & CARTE DES KIDICAL MASS VOISINES --- */
     .grille-mouvement {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -544,6 +545,105 @@
 
     .carte-info p {
       margin: 0;
+    }
+
+    .bloc-carte-voisines {
+      margin-top: 28px;
+      background-color: #ffffff;
+      border: 2.5px dashed var(--bleu);
+      border-radius: 22px;
+      padding: 22px 18px;
+    }
+
+    .bloc-carte-voisines h3 {
+      margin: 0 0 6px 0;
+      font-size: clamp(1.4rem, 3.4vw, 1.75rem);
+      color: var(--bleu);
+    }
+
+    .pills-villes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 14px 0 16px 0;
+    }
+
+    .pill-ville {
+      font-family: 'Comic Neue', cursive, sans-serif;
+      font-weight: 700;
+      font-size: 0.98rem;
+      padding: 5px 13px;
+      border-radius: 18px;
+      border: 2px solid var(--bleu);
+      background-color: var(--fond-bleu);
+      color: var(--bleu);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .pill-ville:hover {
+      background-color: var(--bleu);
+      color: #ffffff;
+    }
+
+    .pill-ville.liege {
+      border-color: var(--rouge);
+      background-color: var(--fond-rose);
+      color: var(--rouge);
+    }
+
+    .pill-ville.liege:hover {
+      background-color: var(--rouge);
+      color: #ffffff;
+    }
+
+    #carte-kidical {
+      width: 100%;
+      height: 360px;
+      border-radius: 16px;
+      border: 2px dashed rgba(11, 127, 163, 0.45);
+      z-index: 1;
+    }
+
+    .pin-velo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      color: #ffffff;
+      font-size: 1.15rem;
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    }
+
+    .leaflet-popup-content {
+      font-family: 'Nunito', sans-serif;
+      text-align: center;
+      line-height: 1.4;
+      margin: 12px 14px;
+    }
+
+    .popup-titre {
+      font-family: 'Comic Neue', cursive, sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .popup-lien {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 4px 12px;
+      background-color: var(--bleu);
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 14px;
+      font-family: 'Comic Neue', cursive, sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
     }
 
     /* --- 6. BÉNÉVOLES (NOUS AVONS BESOIN DE VOUS) --- */
@@ -863,7 +963,7 @@
       </div>
     </section>
 
-    <!-- 5. LE MOUVEMENT (BANDE PLEINE LARGEUR BLEU DOUX) -->
+    <!-- 5. LE MOUVEMENT & CARTE DES KIDICAL MASS VOISINES -->
     <section class="bande-bleue" id="mouvement">
       <div class="conteneur-interne">
         <h2 class="titre-section gras-bleu">La Kidical Mass, en bref 🌍</h2>
@@ -871,7 +971,7 @@
         <div class="grille-mouvement">
           <div class="carte-info">
             <h3>C'est quoi ?</h3>
-            <p>La Kidical Mass est un mouvement mondial. Depuis 2017, il existe en Allemagne, depuis 2020 à Bruxelles, et pour la première fois à Liège en septembre 2022. Lors de ces manifestations cyclistes colorées, des cyclistes de 0 à 99 ans prennent d'assaut les rues pour revendiquer une mobilité durable !</p>
+            <p>La Kidical Mass est un mouvement mondial. Depuis 2017, il existe en Allemagne (notamment à Cologne, qui nous a inspirés dès nos débuts !), depuis 2020 à Bruxelles, et pour la première fois à Liège en septembre 2022. Lors de ces manifestations cyclistes colorées, des cyclistes de 0 à 99 ans prennent d'assaut les rues pour revendiquer une mobilité durable !</p>
           </div>
 
           <div class="carte-info">
@@ -883,6 +983,17 @@
             <h3>Pourquoi ?</h3>
             <p>La vision de Kidical Mass est que tous les enfants et les jeunes puissent se déplacer à vélo de manière sûre et autonome. Nous demandons des lieux verts adaptés aux enfants, avec de nombreux espaces pour jouer et interagir avec toutes les générations.</p>
           </div>
+        </div>
+
+        <!-- Carte interactive des Kidical Mass voisines & inspirantes -->
+        <div class="bloc-carte-voisines">
+          <h3>Les Kidical Mass près de chez nous (et nos inspirations) 🗺️</h3>
+          <p style="margin: 0 auto; max-width: 600px;">
+            Cliquez sur une ville pour découvrir les collectifs voisins en Belgique et en Allemagne :
+          </p>
+
+          <div class="pills-villes" id="liste-pills-villes"></div>
+          <div id="carte-kidical"></div>
         </div>
       </div>
     </section>
@@ -1184,7 +1295,119 @@
 
     initialiserCarrouselGitHub();
 
-    // 4. Génération du QR Code SEPA (standard EPC) & copie IBAN
+    // 4. Carte interactive des Kidical Mass voisines (Leaflet + OpenStreetMap)
+    const lieuxKidical = [
+      {
+        nom: "Kidical Mass Liège",
+        coords: [50.6425, 5.5681],
+        distance: "Ici même !",
+        description: "Notre point de départ : Place Xavier Neujean, depuis septembre 2022.",
+        url: "#accueil",
+        externe: false,
+        estLiege: true
+      },
+      {
+        nom: "Kidical Mass Aachen",
+        coords: [50.7753, 6.0839],
+        distance: "À ~45 km de Liège",
+        description: "Nos voisins d'Aix-la-Chapelle (Radentscheid Aachen).",
+        url: "https://radentscheid-aachen.de/events/kidical-mass/",
+        externe: true,
+        estLiege: false
+      },
+      {
+        nom: "Kidical Mass Namur",
+        coords: [50.4674, 4.8719],
+        distance: "À ~65 km de Liège",
+        description: "Les balades familiales au cœur de la capitale wallonne.",
+        url: "https://www.kidicalmass.be/5000",
+        externe: true,
+        estLiege: false
+      },
+      {
+        nom: "Kidical Mass Bruxelles",
+        coords: [50.8503, 4.3517],
+        distance: "À ~95 km de Liège",
+        description: "Présente dans de nombreuses communes bruxelloises depuis 2020.",
+        url: "https://www.kidicalmass.be/",
+        externe: true,
+        estLiege: false
+      },
+      {
+        nom: "Kidical Mass Köln (Cologne)",
+        coords: [50.9375, 6.9603],
+        distance: "À ~120 km de Liège",
+        description: "Le berceau européen du mouvement depuis 2017, qui a inspiré Liège !",
+        url: "https://kidicalmasskoeln.org/",
+        externe: true,
+        estLiege: false
+      },
+      {
+        nom: "Kidical Mass Mons",
+        coords: [50.4542, 3.9567],
+        distance: "À ~130 km de Liège",
+        description: "Les éditions montoises organisées avec Avello.",
+        url: "https://avello.org/mons-kidicalmass/",
+        externe: true,
+        estLiege: false
+      }
+    ];
+
+    function initialiserCarteVoisines() {
+      const conteneurCarte = document.getElementById("carte-kidical");
+      const conteneurPills = document.getElementById("liste-pills-villes");
+      if (!conteneurCarte || typeof L === "undefined") return;
+
+      const carte = L.map("carte-kidical", { scrollWheelZoom: false }).setView([50.70, 5.45], 8);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(carte);
+
+      const marqueurs = [];
+
+      lieuxKidical.forEach((lieu) => {
+        const couleur = lieu.estLiege ? "#e73743" : "#0b7fa3";
+        const icone = L.divIcon({
+          className: "",
+          html: `<div class="pin-velo" style="background-color:${couleur};">🚲</div>`,
+          iconSize: [34, 34],
+          iconAnchor: [17, 17],
+          popupAnchor: [0, -16]
+        });
+
+        const cibleLien = lieu.externe ? 'target="_blank" rel="noopener noreferrer"' : "";
+        const texteLien = lieu.externe ? "Voir leur site ↗" : "Retour en haut ↑";
+        const couleurTitre = lieu.estLiege ? "#e73743" : "#0b7fa3";
+
+        const popupHtml = `
+          <div>
+            <div class="popup-titre" style="color:${couleurTitre};">${lieu.nom}</div>
+            <div style="font-weight:700; font-size:0.9rem; margin-bottom:4px;">📍 ${lieu.distance}</div>
+            <div style="font-size:0.95rem;">${lieu.description}</div>
+            <a href="${lieu.url}" ${cibleLien} class="popup-lien">${texteLien}</a>
+          </div>
+        `;
+
+        const marqueur = L.marker(lieu.coords, { icon: icone }).addTo(carte).bindPopup(popupHtml);
+        marqueurs.push(marqueur);
+
+        const pill = document.createElement("button");
+        pill.type = "button";
+        pill.className = "pill-ville" + (lieu.estLiege ? " liege" : "");
+        pill.textContent = (lieu.estLiege ? "❤️ " : "📍 ") + lieu.nom.replace("Kidical Mass ", "");
+        pill.onclick = () => {
+          carte.flyTo(lieu.coords, 10, { duration: 0.7 });
+          marqueur.openPopup();
+        };
+        conteneurPills.appendChild(pill);
+      });
+
+      const groupe = L.featureGroup(marqueurs);
+      carte.fitBounds(groupe.getBounds().pad(0.18));
+    }
+
+    // 5. Génération du QR Code SEPA (standard EPC) & copie IBAN
     function genererQrSepa(montant) {
       const conteneurQr = document.getElementById("qr-sepa");
       if (!conteneurQr || typeof QRCode === "undefined") return;
@@ -1231,7 +1454,10 @@
       });
     };
 
-    window.addEventListener("load", () => genererQrSepa(20));
+    window.addEventListener("load", () => {
+      genererQrSepa(20);
+      initialiserCarteVoisines();
+    });
   </script>
 
 </body>
